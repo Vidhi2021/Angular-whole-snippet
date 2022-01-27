@@ -1,0 +1,105 @@
+.progress-bar
+{
+  position: relative;
+}
+.progress-line-container {
+    position: absolute;
+    top:30%;
+    height:6%;
+    margin: auto 15%;
+    width:15%
+  }
+  .greyLine
+  {
+    left:14px;
+    background-color: #d3d3d3;
+    position:absolute;
+    animation:progress 0s ease-in-out forwards;
+    height:100%;
+  }
+  .line {
+    height: 100%;
+    position: absolute;
+    z-index:2;
+    background-color: #047CCF;
+    //background:linear-gradient(to right,#047CCF,#047CCF);
+    animation: progress 4s ease-in-out forwards;
+    @keyframes progress {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  }
+  
+  .images {
+    display: grid;
+    position: relative;
+    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr;
+   //grid-template-columns: 5fr 5fr 5fr 5fr 2fr 2fr 2fr 2fr 2fr;
+    grid-gap: 0;
+    
+    div {
+      z-index:4;  
+    }
+  }
+  .circle-image {
+    height: 100%;
+    width: 100%;
+   
+    border-radius: 30px;
+  }
+  .changeBackground {
+    animation: changeBackground forwards;
+  }
+  @keyframes changeBackground {
+    to {
+      border: 5px solid #047CCF;
+    }
+  }
+  .progressbar-text {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 3fr) 1fr;
+    text-align: center;
+    grid-gap: 0;
+    color: rgb(22, 153, 210);
+    font-weight: bold;
+  }
+  .text {
+    text-align: center;
+    font-size: 0.8em;
+  }
+  
+  
+  .fa-frown-o {
+    color: #047CCF !important;
+    padding: 1px;
+  }
+  @keyframes showDelay {
+    to {
+      visibility: visible;
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    .progress-line-container {
+    top:30%;
+    }
+    .images {
+      grid-template-columns: 2fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 2fr;
+    }
+  
+  }
+  @media only screen and (max-width: 768px) {
+    .progress-line-container {
+      
+      top: 20%;
+    }
+    .images {
+      grid-template-columns: 2fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 2fr;
+    }
+  
+  }
+  
+  

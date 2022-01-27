@@ -1,0 +1,459 @@
+<p-toast [baseZIndex]="10000"></p-toast>
+<div class="container-fluid main-container">
+  <div class="navigation-area">
+    <div class="">
+      <span class="um-breadcrum">
+        <a class="links" routerLink="/home">Home </a> / User Management
+      </span>
+    </div>
+  </div>
+
+  <div class="um-container">
+    <div class="request-inner-container">
+      <app-loading-spinner
+      class="spinner center-aligned"
+      *ngIf="isInviteLoading"
+      ></app-loading-spinner>
+      <div class="row">
+        <div class="col">
+          <div class="header-card"><b>Invite New User</b></div>
+        </div>
+        <div class="col text-right" style="font-size: 12px; color: #575757">
+          * Required
+        </div>
+      </div>
+      <div class="" style="margin-top: 0.5rem;">
+       
+        <form class="um-form" [formGroup]="um_form">
+          <div class="um-form-grid" style="margin-left:0.3rem">
+            <div style="width: 88%" class="form-row">
+              <div class="col-md-3">
+                <label class="form-label">First Name*</label>
+                <input
+                  type="text"
+                  (keyup)="checkForNumbers($event)"
+                  class="form-control"
+                  formControlName="f_name"
+                  placeholder="Enter First Name"
+                />
+                <div
+                  *ngIf="
+                    (um_form.controls.f_name.touched ||
+                      um_form.controls.f_name.dirty ||
+                      submitted) &&
+                    um_form.controls.f_name.errors?.required
+                  "
+                  class="invalid-feedback alert alert-danger"
+                >
+                  <div
+                    *ngIf="
+                      (um_form.controls.f_name.touched ||
+                        um_form.controls.f_name.dirty ||
+                        submitted) &&
+                      um_form.controls.f_name.errors?.required
+                    "
+                  >
+                    First Name is required
+                  </div>
+                  <div *ngIf="um_form.controls.f_name.errors?.pattern">
+                    Please enter valid characters
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Last Name*</label>
+                <input
+                  type="text"
+                  (keyup)="checkForNumbers($event)"
+                  class="form-control"
+                  formControlName="l_name"
+                  placeholder="Enter Last Name"
+                />
+                <div
+                  *ngIf="
+                    (um_form.controls.l_name.touched ||
+                      um_form.controls.l_name.dirty ||
+                      submitted) &&
+                    um_form.controls.l_name.errors?.required
+                  "
+                  class="invalid-feedback alert alert-danger"
+                >
+                  <div
+                    *ngIf="
+                      (um_form.controls.l_name.touched ||
+                        um_form.controls.l_name.dirty ||
+                        submitted) &&
+                      um_form.controls.l_name.errors?.required
+                    "
+                  >
+                    Last Name is required
+                  </div>
+                  <div *ngIf="um_form.controls.l_name.errors?.pattern">
+                    Please enter valid characters
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Email Id*</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Enter Email Id"
+                />
+                <div
+                  *ngIf="
+                    (um_form.controls.email.touched ||
+                      um_form.controls.email.dirty ||
+                      submitted) &&
+                    um_form.controls.email.errors?.required
+                  "
+                  class="invalid-feedback alert alert-danger"
+                >
+                  
+                    Email id is required
+                  </div>
+                  <div *ngIf="um_form.controls.email.errors?.pattern" class="invalid-feedback alert alert-danger">
+                    Please enter a valid email address
+                  </div>
+                
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Contact No</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text"
+                      id="inputGroupPrepend2"
+                      >+27</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    (keydown.space)="$event.preventDefault()"
+                    (keyup)="_keyUp($event)"
+                  
+                    placeholder="Enter Number"
+                    class="actualNumber form-control"
+                    formControlName="phone"
+                  />
+                  <!-- <div
+                    *ngIf="
+                      (um_form.controls.phone.touched ||
+                        um_form.controls.phone.dirty ||
+                        submitted) &&
+                      um_form.controls.phone.errors?.required
+                    "
+                    class="invalid-feedback alert alert-danger"
+                  >
+                    Mobile Number is required
+                  </div> -->
+                    <div *ngIf="um_form.controls.phone.errors?.minlength"  class="invalid-feedback alert alert-danger">
+                      Mobile number must be at least 6 characters
+                    </div>
+                    <div *ngIf="um_form.controls.phone.errors?.maxlength"  class="invalid-feedback alert alert-danger">
+                      Mobile number can be at max 9 characters
+                    </div> 
+                </div>
+              </div>
+            </div>
+            <div style="width: 88%; margin-top: 1rem" class="form-row">
+              <div class="col-md-3">
+                <label class="form-label">User Name*</label>
+                <input
+                  type="text"
+                  style="width: 100%"
+                  class="form-control"
+                  formControlName="userName"
+                  placeholder="Enter User Name"
+                />
+                <div
+                  *ngIf="
+                    (um_form.controls.userName.touched ||
+                      um_form.controls.userName.dirty ||
+                      submitted) &&
+                    um_form.controls.userName.errors?.required
+                  "
+                  class="invalid-feedback alert alert-danger"
+                >
+                    User Name is required
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"> Password *</label>
+                <div class="input">
+                  <p-password
+                    formControlName="password"
+                    [toggleMask]="true"
+                    placeholder="Enter password"
+                  ></p-password>
+                </div>
+                <div
+                *ngIf="
+                  (um_form.controls.password.touched ||
+                    um_form.controls.password.dirty ||
+                    submitted) &&
+                  um_form.controls.password.errors?.required
+                "
+                class="invalid-feedback alert alert-danger"
+                style="width:15rem"
+              >
+                  Password is required
+                </div>
+                <div *ngIf="um_form.controls.password.errors?.minlength"  
+                style="width:15rem"
+                class="invalid-feedback alert alert-danger">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+            </div>
+            <div class="accright-label">
+              <label>Role*</label>
+            </div>
+            <div class="radio-buttons">
+              <div class="row">
+                <div style="margin-bottom: 2%" class="col-12 clr-text">
+                  <div class="radio-toolbar" style="display: inline-flex;">
+                    <ng-container *ngIf="user_role.toLowerCase()=='admin'">
+                    <div *ngFor="let role of roles">
+                    <label  for="role.roleName" >
+                      <input  id="role.roleName" type="radio" [value]="role" formControlName="role" [(ngModel)]="radioData" />
+                      {{role.roleName}}
+                    </label>
+                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="user_role.toLowerCase()=='business owner'">
+                    <div  *ngFor="let val of businessRole">
+                    <label class="" for="val.roleName">
+                      <input id="val.roleName" type="radio" [value]="val" formControlName="role" [(ngModel)]="radioData" />
+                      {{val.roleName}}
+                    </label>
+                    </div>
+                  </ng-container>
+                  </div>
+                  <div *ngIf="submitted && um_form.controls.role.errors?.required" 
+                   class="invalid-feedback alert alert-danger" style="width:20rem">
+                    Role is required
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-clear"
+                (click)="clearFields()"
+              >
+                Clear
+              </button>
+              <button type="submit" class="btn btn-submit" (click)="onSubmit()">
+                Invite
+              </button>
+            </div>
+          </div>
+        </form>
+       
+      </div>
+    </div>
+  </div>
+  <!-- user-table-->
+  <div class="my-um-table-container">
+    <div class="age-analysis">
+      <!-- <ng-template #graphdata > -->
+      <p-table
+        #dt
+        id="um-table"
+        [globalFilterFields]="[
+          'firstName',
+          'lastName',
+          'emailId',
+          'contactNumber',
+          'roleName',
+          'userName'
+        ]"
+        [ngClass]="'ptable-header'"
+        [value]="tableList"
+        [autoLayout]="true"
+        [paginator]="true"
+        [rows]="10"
+        editMode="row"
+        dataKey="userId"
+        [responsive]="true"
+      >
+        <!--Filter Start-->
+        <ng-template pTemplate="caption" class="search-header">
+          <div class="d-flex flex-wrap justify-content-between">
+
+            <div class="search-header-user">Users</div>
+            <div class="d-flex flex-wrap" style="align-items: center">
+              <div  class="color-legend">
+                <i style="color: red; font-size: 0.8em" class="pi pi-circle-on">
+                </i>
+                <span> Deactivated</span>
+                &nbsp;
+                <i
+                  style="color: green; font-size: 0.8em"
+                  class="pi pi-circle-on"
+                >
+                </i>
+                <span> Active</span>
+                &nbsp;
+                <i
+                  style="color: yellow; font-size: 0.8em"
+                  class="pi pi-circle-on"
+                >
+                </i>
+                <span> Invited</span>
+               
+              </div>
+              <div style="margin-left: 1rem" class="search-header-search">
+                <input
+                  type="text"
+                  class="search"
+                  placeholder="Search"
+                  (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                />
+                <i class="pi pi-search"></i>
+              </div>
+            </div>
+            
+          </div>
+        </ng-template>
+        <!--Filter End-->
+        <ng-template pTemplate="header">
+          <tr [ngClass]="'table-header-test'">
+            <th pSortableColumn="firstName">First Name<p-sortIcon field="firstName"></p-sortIcon></th>
+            <th pSortableColumn="lastName">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
+            <th pSortableColumn="emailId">Email Id <p-sortIcon field="emailId"></p-sortIcon></th>
+            <th pSortableColumn="contactNumber">Contact Number <p-sortIcon field="contactNumber"></p-sortIcon></th>
+            <th pSortableColumn="password">Password <p-sortIcon field="password"></p-sortIcon></th>
+            <th pSortableColumn="roleName">User Role <p-sortIcon field="roleName"></p-sortIcon></th>
+            <th>Action</th>
+          </tr>
+          <app-loading-spinner
+            style="padding-left: 275%"
+            *ngIf="isLoading"
+          ></app-loading-spinner>
+        </ng-template>
+
+        <ng-template
+          pTemplate="body"
+          let-row
+          let-columns
+          let-editing="editing"
+          let-ri="rowIndex"
+        >
+          <tr [pEditableRow]="row">
+            <td
+              [ngClass]="{
+                green: row?.userStatus.toLowerCase() == 'active',
+                red: row?.userStatus.toLowerCase() == 'deactivated',
+                yellow: row?.userStatus.toLowerCase() == 'invited'
+              }"
+            >
+              {{ row?.firstName }}
+            </td>
+            <td>{{ row?.lastName }}</td>
+            <td>{{ row?.emailId }}</td>
+
+            <td class="mob-input">
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input
+                    id="edit-contact"
+                    maxlength="9"
+                    minlength="9"
+                    pInputText
+                    type="tel"
+                    [(ngModel)]="row.contactNumber"
+                    pattern="[0-9]{9}"
+                    (keyup)="_keyUp($event)"
+                    required
+                  />
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ row?.contactNumber }}
+                </ng-template>
+                <!-- <div *ngIf="" [ngClass]="{''}"></div> -->
+              </p-cellEditor>
+              <!-- {{ row["user_mobile"] }} -->
+            </td>
+            <td class="mob-input">
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input
+                    id="edit-password"
+                    pInputText
+                    type="tel"
+                    [(ngModel)]="row.password"
+                    required
+                  />
+                </ng-template>
+                <ng-template pTemplate="output"> </ng-template>
+                <!-- <div *ngIf="" [ngClass]="{''}"></div> -->
+              </p-cellEditor>
+              <!-- {{ row["user_mobile"] }} -->
+            </td>
+            <td>{{ row?.roleName }}</td>
+            <td>
+              <div
+                class="action-btns"
+                *ngIf="row?.userStatus.toLowerCase() != 'invited'"
+              >
+                <div
+                  *ngIf="
+                    !editing && row?.userStatus.toLowerCase() != 'deactivated'
+                  "
+                  pInitEditableRow
+                  (click)="onRowEditInit(row)"
+                >
+                  Edit
+                </div>
+                <div
+                  *ngIf="editing"
+                  pSaveEditableRow
+                  (click)="onRowEditSave(row)"
+                >
+                  Update
+                </div>
+                <div
+                  *ngIf="editing"
+                  pCancelEditableRow
+                  (click)="onRowEditCancel(row, ri)"
+                >
+                  Cancel
+                </div>
+                <!-- <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
+                                class="ui-button-info" (click)="onRowEditInit(row)"></button> -->
+                <div
+                  *ngIf="
+                    !editing && row?.userStatus.toLowerCase() != 'deactivated'
+                  "
+                  (click)="confirmDeactivateCustomerUser(row, ri)"
+                >
+                  Deactivate
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td *ngIf="!isLoading" [attr.colspan]="columns.length+1">
+              No Customers found
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog
+        header="Deactivate User"
+        icon="pi pi-exclamation-triangle">
+       
+      </p-confirmDialog>
+      <!-- </ng-template> -->
+      <!-- Data Table using NgPrime End-->
+    </div>
+  </div>
+</div>

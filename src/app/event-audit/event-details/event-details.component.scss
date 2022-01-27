@@ -1,0 +1,708 @@
+// .main-container {
+//   padding: 2% !important;
+//   background: #f7f7f7;
+// }
+// .container-fluid {
+//   padding-left: 0px;
+//   padding-right: 0px;
+//   margin-top: 0%;
+// }
+.header-details {
+  background-color: #047CCF;
+  color: #ffff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  //transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.details_div {
+  padding: 30px;
+  min-height:120vh;
+  margin-bottom: 2rem;
+  background-color: #ffff;
+  border-radius: 0;
+}
+.fa-trophy {
+  color: #000;
+}
+
+.fa-trophy.active {
+  color: yellow;
+}
+.concluded-events {
+  // padding: 30px;
+  border:1px solid black;
+  background-color: #ffff;
+}
+input[type="file"] {
+  display: none;
+}
+.header-events {
+  background-color: #f7f7f7;
+  border: 1px solid black;
+  margin-bottom: 2rem;
+}
+.vendor-mgmt {
+  background-color: #ffff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.doc-checklist {
+  background-color: #ffff;
+  // border:1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.event-details-colums-adjustment-left {
+  margin-right: 15px;
+}
+.event-details-colums-adjustment-right-vendor
+{
+ margin-right:none;
+}
+.event-details-colums-adjustment-right {
+  margin-left: 15px;
+}
+
+@media (min-width: 768px) {
+  .h-md-100 {
+    height: 100vh;
+  }
+}
+@media (max-width: 768px) {
+  .h-md-100 {
+    height: 100vh;
+  }
+  .details_div {
+    // padding: 30px;
+    padding: 10px;
+  }
+  .event-details-colums-adjustment-left {
+    margin-right: unset;
+  }
+  .event-details-colums-adjustment-right {
+    margin-left: unset;
+  }
+}
+// .right {
+//   display: flex;
+//   border: 2px solid#f7f7f7;
+//   height: 100%;
+// }
+// .left {
+//   display: flex;
+//   border: 2px solid#f7f7f7;
+//   height: 100%;
+// }
+
+.adjusting-flex {
+  // margin-right: 3rem;
+  // justify-content: center;
+  // align-items: center;
+  // display: grid;
+  padding: 0.5rem;
+}
+
+.um-container {
+  border-radius: 0;
+  background-color: #ffffff;
+  // padding: 2%; // Edited by Hussain
+}
+.alert-danger {
+  color: rgb(233, 37, 144);
+  background-color: #ffffff;
+  border-color: rgb(233, 37, 144);
+  //border-color: rgb(228, 19, 19);
+}
+
+.request-inner-container {
+  padding: 2% 2% 2% 2%;
+  margin-top: 2%;
+}
+.age-analysis-heading {
+  font-weight: bold;
+  padding-bottom: 2%;
+  color: #047CCF;
+  font-size: 12px;
+}
+
+.form-label {
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #707070;
+  font-weight: bold;
+}
+
+.checkbox-label {
+  padding-top: 2%;
+  font-size: 12px;
+  color: #707070;
+  font-weight: bold;
+}
+//other toggle css
+.other-input {
+  display: inline-flex;
+}
+.option {
+  font-size: 12px;
+}
+//other toggle css ends
+//checkbox
+.container {
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  margin-right: 4px;
+  cursor: pointer;
+  // font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  padding-top: 3%;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+  border: 2px solid #047CCF;
+  border-radius: 4px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 0px;
+  width: 8px;
+  height: 18px;
+  border: solid #047CCF;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+//radio button css
+.radio-btn {
+  margin: 1rem;
+}
+
+//button css
+.btn-submit {
+  width: 8rem;
+  background-color: #047CCF;
+  border-color: #047CCF;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 0.5%;
+  border-radius: 0;
+  height: auto;
+  // margin:1rem;
+}
+.btn-submit:hover {
+  width: 8rem;
+  background-color: #047CCF;
+  border-color: #047CCF;
+  color: #fff;
+  cursor: pointer;
+  //float:right;
+}
+.btn-clear {
+  margin: 1rem;
+  width: 8rem;
+  background-color: #ffffff;
+  border-color: #047CCF;
+  // color: #047CCF;
+  color: #047CCF;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 0.5%;
+  border-radius: 0;
+  height: auto;
+  font-weight: bold;
+}
+.btn-clear:hover {
+  width: 8rem;
+  background-color: #ffffff;
+  border-color: #047CCF;
+  color: #047CCF;
+  cursor: pointer;
+}
+
+.btn-Tsubmit {
+  margin: 1rem;
+  width: 5rem;
+  background-color: #047CCF;
+  border-color: #047CCF;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  margin-left: 0.5%;
+  border-radius: 0;
+  height: auto;
+}
+.btn-Tclear {
+  margin: 1rem;
+  width: 5rem;
+  background-color: #ffffff;
+  border-color: #047CCF;
+  // color: #047CCF;
+  color: #047CCF;
+  cursor: pointer;
+  font-size: 10px;
+  margin-right: 0.5%;
+  border-radius: 0;
+  height: auto;
+  font-weight: bold;
+}
+//disable class
+.disabled {
+  cursor: not-allowed;
+  background-color: #f7f7f7;
+  pointer-events: none;
+}
+
+//disbale class end
+.create-event-form-field {
+  //height: 2rem;
+  height: calc(1.5em + 0.75rem + 2px);
+  width: 12rem;
+  background-color: #ffff;
+  border-color: rgba(112, 112, 112, 1);
+}
+.adjusting-flex {
+  margin-right: 3rem;
+}
+.header-card-details {
+  padding: 12px;
+  color: #047CCF;
+  justify-content: center;
+  align-items: center;
+}
+.example-full-width {
+  padding-top: 0rem;
+}
+.view {
+  color: #007bff;
+  cursor: pointer;
+}
+//radio concluded event
+.radio {
+  font-size: 0.8rem;
+  color: var(--color);
+  grid-gap: 0.5em;
+  padding-top: 0.2rem;
+  padding-left: 1rem;
+}
+.btn-conclude {
+  background-color: #047CCF;
+  width: 5rem;
+  border-color: #047CCF;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  height: 2rem;
+  margin-left: 1rem;
+}
+.export {
+  margin-bottom: 0.5rem;
+  display: inline-flex;
+}
+//chat-box
+.overlay-menu {
+  & {
+    //background-color: #DEDEDE;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    height: 4em;
+    width: 4em;
+    cursor: pointer;
+    text-align: center;
+  }
+  .pi {
+    font-size: 3em;
+    color: #047CCF;
+  }
+}
+.tour-icon {
+  right: 2rem;
+  text-align: center;
+  .tour-icon-img {
+    width: 60%;
+    margin-top: 0.2em;
+  }
+  div {
+    font-size: 0.8rem;
+    margin-top: 2px;
+    color: #047CCF;
+  }
+}
+.tour-icon-selected {
+  background: #047CCF;
+  img {
+    filter: brightness(0) invert(1);
+  }
+  div {
+    color: #ffffff !important;
+  }
+}
+.rfq-icon {
+  left: 0rem;
+  text-align: center;
+
+  img {
+    width: 60%;
+    //margin-top: 0.2em;
+  }
+  div {
+    font-size: 0.8rem;
+    color: #047CCF;
+  }
+}
+/* Set a style for the submit/send button */
+.rfq-form .internal-form .btn {
+  background-color: #047CCF;
+  color: white;
+  //padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.rfq-form .internal-form .cancel {
+  background-color: white;
+  color: #047CCF;
+}
+
+/* Add some hover effects to buttons */
+.rfq-form .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
+/* Full-width textarea */
+
+/* When the textarea gets focus, do something */
+.rfq-form textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.rfq-form {
+  & {
+    background-color: white;
+    position: fixed;
+    border: 0.5px solid;
+    right: 15px;
+    bottom: 5.5rem;
+    z-index: 10000;
+    padding: 1em;
+    width: 20vw;
+    min-height: 50vh;
+    overflow: auto;
+  }
+
+  .rfq-heading {
+    background-color: #047CCF;
+    color: #ffffff;
+    padding-top: 0.9vh;
+    height: 4vh;
+    font-size: 0.7em;
+    .close-form {
+      text-align: right;
+      cursor: pointer;
+      .pi {
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+//chat with messages
+/* Chat containers */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+.internal-form {
+  & {
+    background-color: white;
+    position: fixed;
+    border: 0.5px solid;
+    left: 15px;
+    bottom: 5.5rem;
+    z-index: 10000;
+    padding: 1em;
+    width: 20vw;
+
+    overflow: auto;
+  }
+
+  .internal-heading {
+    background-color: #047CCF;
+    color: #ffffff;
+    padding-top: 0.9vh;
+    height: 4vh;
+    font-size: 0.7em;
+    .close-form {
+      text-align: right;
+      cursor: pointer;
+      .pi {
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+
+//table vendor styling
+#customers .sphere
+{
+  border-bottom-right-radius: 75px;
+  border-top-right-radius:75px;
+  margin-bottom:1rem
+}
+#customers .docSphere
+{
+  // -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
+  //   clip-path: polygon(0 0, 0 100%, 100% 50%);
+  -webkit-clip-path: polygon(0 0%, 0 60%, 50% 100%, 0% 60%, 50% 100%, 100% 60%, 100% 0%);
+}
+// #customers tr:nth-of-type(2) > th:nth-of-type(1) {
+//   background-color: #ffff;
+//   color:#047CCF;
+//   border:1px solid black;
+  
+// }
+// #customers tr:last-of-type > th:nth-of-type(1) {
+//   background-color: #ffff;
+//   color:#047CCF;
+//   border:1px solid black;
+// }
+  #customers tr th:nth-of-type(1)
+  {
+    background-color: goldenrod;
+  }
+  #customers tr th:nth-of-type(2)
+  {
+    background-color: green;
+  }
+
+  #customers tr th:nth-of-type(3)
+  {
+    background-color: #00BFFF;
+  }
+  #customers tr th:nth-of-type(4)
+  {
+    background-color: orange;
+  }
+  #customers tr th:nth-of-type(5)
+  {
+    background-color: pink;
+  }
+  #customers tr th:nth-of-type(6)
+  {
+    background-color: blueviolet;
+  }
+  #customers tr th:nth-of-type(7)
+  {
+    background-color: rgb(226, 43, 119);
+  }
+  #customers tr th:nth-of-type(8)
+  {
+    background-color: rgb(226, 147, 43);
+  }
+  #customers tr th:nth-of-type(9)
+  {
+    background-color: rgb(43, 214, 226);
+  }
+  #customers tr th:nth-of-type(10)
+  {
+    background-color: rgb(95, 226, 43);
+  }
+  #customers td:nth-child(2)
+  {
+    color: yellow;
+  }
+  #customers td:nth-child(3)
+  {
+    color: green;
+  }
+  #customers td:nth-child(4)
+  {
+    color: #00BFFF;
+  }
+  #customers td:nth-child(5)
+  {
+    color: orange;
+  }
+  #customers td:nth-child(6)
+  {
+    color: pink;
+  }
+  #customers td:nth-child(7)
+  {
+    color: blueviolet;
+  }
+  #customers tr:first-child td {
+    border: none;
+  }
+  #customers td {
+   //border: 1px#ddd;
+   padding: 8px;
+   border:1px solid #c7c7c7;
+   text-align: center;
+  }
+  #customers th {
+    //border: 1px solid #ddd;
+    padding: 55px;
+    //border:1px solid black;
+  }
+
+// #customers tr:nth-child(even) {
+//   background-color: #f2f2f2;
+// }
+
+
+// // #customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+ 
+  //background-color: #047CCF;
+  // background-color: #4682B4;
+  color: white;
+}
+
+//vendor table styling ends
+
+#upload th {
+  background-color: #047CCF;
+  color: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+#upload td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.disabledd {
+  opacity: 0.5 !important;
+  cursor: none;
+}
+.VendorResponse
+{
+  border:1px solid black;
+  
+}
+//file upload css
+.fileCard
+{
+  border:1px solid black;
+}
+.uploadCard
+{
+  border:1px solid darkslategrey;
+}
+
+//loader starts
+.center-aligned {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner-event {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.288);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 180%;
+}
+//loader ends

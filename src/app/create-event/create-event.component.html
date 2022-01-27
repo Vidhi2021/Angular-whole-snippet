@@ -1,0 +1,1065 @@
+<!-- <p>event-name works! {{user.id}}</p> -->
+<p-toast></p-toast>
+<form
+  action="https://angular.co.za/sample-project/downloadFile"
+  method="post"
+  name="downloadForm"
+  style="display: none"
+  onSubmit="https://angular.co.za/sample-project/downloadFile"
+>
+  <input
+    #someInput
+    type="text"
+    id="documentId"
+    name="documentId"
+    style="display: none"
+  />
+  <input
+    type="submit"
+    #search
+    id="downloadbtn"
+    onclick="downloadForm.submit()"
+    style="display: none"
+  />
+</form>
+<div>
+<div class="container-fluid main-container">
+  <!--navigation starts-->
+  <div class="navigation-area">
+    <div class=""  style="padding-bottom: 3%;">
+      <span class="um-breadcrum">
+        <a class="links" routerLink="/home">Home </a>
+        /Create-Event
+      </span>
+    </div>
+  </div>
+  <!--navigation ends-->
+  <div class="event-div">
+    <div class="inner-event-div">
+      <p class="header-card"><b>Add Details To Create Event</b></p>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card" style="border: none">
+              <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>
+                      <h5>
+                        Basic Details<br />
+                        <p style="color: grey; font-size: 0.9rem">
+                          Basic details about the Event to be created
+                        </p>
+                      </h5>
+                    </ng-template>
+
+                    <div class="col-sm-12">
+                      <div class="row" style="margin-top: 1rem">
+                        <div class="col-sm-6">
+                          <div class="form-label">Vendors*</div>
+                          <p-multiSelect
+                            [options]="vendors"
+                            formControlName="firstCtrl1"
+                            [(ngModel)]="selected_vendor"
+                            optionLabel="value"
+                            optionValue="viewValue"
+                          ></p-multiSelect>
+                          <div
+                            *ngIf="
+                              (firstFormGroup.controls.firstCtrl1.touched ||
+                                firstFormGroup.controls.firstCtrl1.dirty ||
+                                submitted) &&
+                              firstFormGroup.controls.firstCtrl1.errors
+                                ?.required
+                            "
+                            style="color: red"
+                          >
+                            Vendors is required
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-label">Event Name*</div>
+                          <input
+                            type="text"
+                            pInputText
+                            formControlName="firstCtrl2"
+                            [(ngModel)]="display_name"
+                            class="create-event-form-field"
+                          />
+                          <div
+                            *ngIf="
+                              (firstFormGroup.controls.firstCtrl2.touched ||
+                                firstFormGroup.controls.firstCtrl2.dirty ||
+                                submitted) &&
+                              firstFormGroup.controls.firstCtrl2.errors
+                                ?.required
+                            "
+                            style="color: red"
+                          >
+                            Event Name is required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="adjusting-flex">
+                            <div class="form-label">Start Date*</div>
+                            <p-calendar
+                              [(ngModel)]="startDate"
+                              formControlName="firstCtrl3"
+                              [readonlyInput]="true"
+                            ></p-calendar>
+                            <div
+                              *ngIf="
+                                (firstFormGroup.controls.firstCtrl3.touched ||
+                                  firstFormGroup.controls.firstCtrl3.dirty ||
+                                  submitted) &&
+                                firstFormGroup.controls.firstCtrl3.errors
+                                  ?.required
+                              "
+                              style="color: red"
+                            >
+                              Start Date is required
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="adjusting-flex">
+                            <div class="form-label">End Date*</div>
+                            <p-calendar
+                              [(ngModel)]="endDate"
+                              formControlName="firstCtrl4"
+                              [touchUI]="true"
+                            ></p-calendar>
+                            <div
+                              *ngIf="
+                                (firstFormGroup.controls.firstCtrl4.touched ||
+                                  firstFormGroup.controls.firstCtrl4.dirty ||
+                                  submitted) &&
+                                firstFormGroup.controls.firstCtrl4.errors
+                                  ?.required
+                              "
+                              style="color: red"
+                            >
+                              End Date is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-label">Genric Comment*</div>
+                      <textarea
+                        style="width: 15rem"
+                        pInputTextarea
+                        placeholder="Ex.Require in correct format..."
+                        formControlName="firstCtrl5"
+                        [(ngModel)]="comments"
+                        [readonly]="genricCommectReadOnly"
+                      >
+                      </textarea>
+                      <div
+                        *ngIf="
+                          (firstFormGroup.controls.firstCtrl5.touched ||
+                            firstFormGroup.controls.firstCtrl5.dirty ||
+                            submitted) &&
+                          firstFormGroup.controls.firstCtrl5.errors?.required
+                        "
+                        style="color: red"
+                      >
+                        Comment is required
+                      </div>
+                    </div>
+                    <div style="margin-top: 2rem">
+                      <button
+                        matStepperNext
+                        class="btn btn-clear"
+                        type="submit"
+                        (click)="onSubmitForm1()"
+                      >
+                        Next
+                      </button>
+
+                      <button class="btn btn-submit">Save</button>
+                    </div>
+                  </form>
+                </mat-step>
+
+                <mat-step
+                  [stepControl]="secondFormGroup"
+                  label="Terms and Conditions "
+                  placeholder="Ex. It makes me feel..."
+                >
+                  <ng-template matStepLabel>
+                    <h5>
+                      Terms and Conditions<br />
+                      <p style="color: grey; font-size: 0.9rem">
+                        Explain Terms and Conditions
+                      </p>
+                    </h5>
+                  </ng-template>
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>
+                      <h5>
+                        Basic Details<br />
+                        <p style="color: grey; font-size: 0.9rem">
+                          Basic details about the User
+                        </p>
+                      </h5>
+                    </ng-template>
+
+                    <div class="">
+                      <div style="margin: 1rem">
+                        <b>Please Enter Terms And Conditions</b>
+                        <div class="card">
+                          <div>
+                            <p-editor
+                              formControlName="secondCtrl"
+                              [(ngModel)]="tnc"
+                              [style]="{ height: '320px' }"
+                              [readonly]="termsAndConditions"
+                            ></p-editor>
+                          </div>
+                        </div>
+
+                        <div
+                          *ngIf="
+                            (secondFormGroup.controls.secondCtrl.touched ||
+                              secondFormGroup.controls.secondCtrl.dirty ||
+                              submitted) &&
+                            secondFormGroup.controls.secondCtrl.errors?.required
+                          "
+                          style="color: red"
+                        >
+                          Terms and Conditions required
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="">
+                      <button
+                        matStepperNext
+                        class="btn btn-clear"
+                        type="submit"
+                        (click)="onSubmitForm2()"
+                      >
+                        Next
+                      </button>
+
+                      <button class="btn btn-submit">Save</button>
+                    </div>
+                  </form>
+                </mat-step>
+
+                <mat-step>
+                  <ng-template matStepLabel>
+                    <h5>
+                      Documents<br />
+                      <p style="color: grey; font-size: 0.9rem">
+                        Documents Info
+                      </p>
+                    </h5>
+                  </ng-template>
+
+                  <div style="margin: 1rem">
+                    <b>BEE (Drag and Drop Files Below)</b>
+                    <div class="card">
+                      <div>
+                        <div
+                          [fileUploadInputFor]="fileUploadQueue3"
+                          class="upload-drop-zone"
+                          style="
+                            height: 5rem;
+                            width: 100%;
+                            background: gainsboro;
+                          "
+                        ></div>
+                        <div *ngIf="isUpdate == true" class="d-flex">
+                          <div>Uploaded Documents:</div>
+                          <a href="{{ list?.BEEE?.link }}">{{
+                            list?.BEEE?.doc_name
+                          }}</a>
+                        </div>
+
+                        <div style="width: 100%">
+                          <mat-file-upload-queue
+                            #fileUploadQueue3
+                            [httpUrl]="
+                              'http://localhost:8080/jax-rs-jersey-application-sample'
+                            "
+                            fileAlias="{{ fileAlias }}"
+                            [httpRequestHeaders]="httpRequestHeaders"
+                            [httpRequestParams]="httpRequestParams"
+                          >
+                            <mat-file-upload
+                              [file]="file"
+                              [id]="i"
+                              *ngFor="
+                                let file of fileUploadQueue3.files;
+                                let i = index
+                              "
+                            ></mat-file-upload>
+                          </mat-file-upload-queue>
+                        </div>
+                        <div style="padding: 1rem">
+                          <mat-form-field
+                            style="width: 100%"
+                            class="example-full-width"
+                          >
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea
+                              matInput
+                              placeholder="Ex. It makes me feel..."
+                            ></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin: 1rem">
+                    <b>RFQ (Drag and Drop Files Below)</b>
+                    <div class="card">
+                      <div>
+                        \
+                        <div
+                          [fileUploadInputFor]="fileUploadQueue3"
+                          class="upload-drop-zone"
+                          style="
+                            height: 5rem;
+                            width: 100%;
+                            background: gainsboro;
+                          "
+                        ></div>
+                        <div *ngIf="isUpdate == true" class="d-flex">
+                          <div>Uploaded Documents:</div>
+                          <a href="{{ list?.RFQ?.link }}">{{
+                            list?.RFQ?.doc_name
+                          }}</a>
+                        </div>
+                        <div style="width: 100%">
+                          <mat-file-upload-queue
+                            #fileUploadQueue3
+                            [httpUrl]="
+                              'http://localhost:8080/jax-rs-jersey-application-sample'
+                            "
+                            fileAlias="{{ fileAlias }}"
+                            [httpRequestHeaders]="httpRequestHeaders"
+                            [httpRequestParams]="httpRequestParams"
+                          >
+                            <mat-file-upload
+                              [file]="file"
+                              [id]="i"
+                              *ngFor="
+                                let file of fileUploadQueue3.files;
+                                let i = index
+                              "
+                            ></mat-file-upload>
+                          </mat-file-upload-queue>
+                        </div>
+                        <div style="padding: 1rem">
+                          <mat-form-field
+                            style="width: 100%"
+                            class="example-full-width"
+                          >
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea
+                              matInput
+                              placeholder="Ex. It makes me feel..."
+                            ></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin: 1rem">
+                    <b>RFI (Drag and Drop Files Below)</b>
+                    <div class="card">
+                      <div>
+                        <div
+                          [fileUploadInputFor]="fileUploadQueue3"
+                          class="upload-drop-zone"
+                          style="
+                            height: 5rem;
+                            width: 100%;
+                            background: gainsboro;
+                          "
+                        ></div>
+                        <div *ngIf="isUpdate == true" class="d-flex">
+                          <div>Uploaded Documents:</div>
+                          <a href="{{ list?.RFI?.link }}">{{
+                            list?.RFI?.doc_name
+                          }}</a>
+                        </div>
+                        <div style="width: 100%">
+                          <mat-file-upload-queue
+                            #fileUploadQueue3
+                            [httpUrl]="
+                              'http://localhost:8080/jax-rs-jersey-application-sample'
+                            "
+                            fileAlias="{{ fileAlias }}"
+                            [httpRequestHeaders]="httpRequestHeaders"
+                            [httpRequestParams]="httpRequestParams"
+                          >
+                            <mat-file-upload
+                              [file]="file"
+                              [id]="i"
+                              *ngFor="
+                                let file of fileUploadQueue3.files;
+                                let i = index
+                              "
+                            ></mat-file-upload>
+                          </mat-file-upload-queue>
+                        </div>
+                        <div style="padding: 1rem">
+                          <mat-form-field
+                            style="width: 100%"
+                            class="example-full-width"
+                          >
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea
+                              matInput
+                              placeholder="Ex. It makes me feel..."
+                            ></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin: 1rem">
+                    <b>RFP (Drag and Drop Files Below)</b>
+                    <div class="card">
+                      <div>
+                        <div
+                          [fileUploadInputFor]="fileUploadQueue3"
+                          class="upload-drop-zone"
+                          style="
+                            height: 5rem;
+                            width: 100%;
+                            background: gainsboro;
+                          "
+                        ></div>
+                        <div *ngIf="isUpdate == true" class="d-flex">
+                          <div>Uploaded Documents:</div>
+                          <a href="{{ list?.RFP?.link }}">{{
+                            list?.RFP?.doc_name
+                          }}</a>
+                        </div>
+                        <div style="width: 100%">
+                          <mat-file-upload-queue
+                            #fileUploadQueue3
+                            [httpUrl]="
+                              'http://localhost:8080/jax-rs-jersey-application-sample'
+                            "
+                            fileAlias="{{ fileAlias }}"
+                            [httpRequestHeaders]="httpRequestHeaders"
+                            [httpRequestParams]="httpRequestParams"
+                          >
+                            <mat-file-upload
+                              [file]="file"
+                              [id]="i"
+                              *ngFor="
+                                let file of fileUploadQueue3.files;
+                                let i = index
+                              "
+                            ></mat-file-upload>
+                          </mat-file-upload-queue>
+                        </div>
+                        <div style="padding: 1rem">
+                          <mat-form-field
+                            style="width: 100%"
+                            class="example-full-width"
+                          >
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea
+                              matInput
+                              placeholder="Ex. It makes me feel..."
+                            ></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div style="margin: 1rem">
+                      <button
+                        style="width: 9rem"
+                        class="btn btn-submit"
+                        *ngIf="isUpdate == false"
+                        (click)="CreateAnEvent()"
+                      >
+                        Create An Event
+                      </button>
+                      <button
+                        style="width: 9rem"
+                        class="btn btn-submit"
+                        *ngIf="isUpdate == true"
+                        (click)="UpdateAnEvent()"
+                      >
+                        Update An Event
+                      </button>
+                      <button
+                        *ngIf="isUpdate == false"
+                        style="margin-left: 1rem"
+                        class="btn btn-clear"
+                        (click)="stepper.reset()"
+                      >
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                </mat-step>
+              </mat-horizontal-stepper>-->
+            </div>  
+
+            <p-tabView [(activeIndex)]="activeIndex">
+              <p-tabPanel header="Basic Details">
+                <form [formGroup]="firstFormGroup">
+                  <div class="col-sm-12">
+                    <div class="row" style="margin-top: 1rem">
+                      <div class="col-sm-3">
+                        <div class="form-label">Vendors*</div>
+                        <p-multiSelect
+                          [options]="vendorList"
+                          formControlName="firstCtrl1"
+                          [(ngModel)]="selected_vendor"
+                          optionLabel="fullName"
+                          value="selected_vendor"
+                          styleClass="multi"
+                          display="chip"
+                        ></p-multiSelect>
+                        <div
+                          *ngIf="
+                            (firstFormGroup.controls.firstCtrl1.touched ||
+                              firstFormGroup.controls.firstCtrl1.dirty ||
+                              submitted) &&
+                            firstFormGroup.controls.firstCtrl1.errors?.required
+                          "
+                          class="invalid-feedback alert alert-danger"
+                          style="width: 15rem"
+                        >
+                          Vendors is required
+                        </div>
+                      </div>
+                      <div class="col-sm-3" *ngIf="!isUpdate">
+                        <div class="form-label">Display Event Name*</div>
+                        <input
+                          type="text"
+                          formControlName="firstCtrl2"
+                          [(ngModel)]="display_name"
+                          class="create-event-form-field"
+                        />
+                        <div
+                          *ngIf="
+                            (firstFormGroup.controls.firstCtrl2.touched ||
+                              firstFormGroup.controls.firstCtrl2.dirty ||
+                              submitted) &&
+                            firstFormGroup.controls.firstCtrl2.errors?.required
+                          "
+                          class="invalid-feedback alert alert-danger"
+                          style="width: 15rem"
+                        >
+                          Event Name is required
+                        </div>
+                      </div>
+                      <div class="col-sm-3" *ngIf="isUpdate">
+                        <div class="form-label">Display Event Name*</div>
+                        <input
+                          type="text"
+                          formControlName="firstCtrl2"
+                          [(ngModel)]="display_name"
+                          class="disable-create-field"
+                          readonly
+                        />
+                      </div>
+                      <div class="col-sm-3" *ngIf="!isUpdate">
+                        <div class="adjusting-flex">
+                          <div class="form-label">Start Date*</div>
+                          <p-calendar
+                            name="startDate"
+                            [(ngModel)]="startDate"
+                            dateFormat="dd/mm/yy"
+                            formControlName="firstCtrl3"
+                            [minDate]="currentDate"
+                            (click)="setEndDate(startDate)"
+                            [style]="{ width: '15rem' }"
+                          ></p-calendar>
+                          <div
+                            *ngIf="
+                              (firstFormGroup.controls.firstCtrl3.touched ||
+                                firstFormGroup.controls.firstCtrl3.dirty ||
+                                submitted) &&
+                              firstFormGroup.controls.firstCtrl3.errors
+                                ?.required
+                            "
+                            class="invalid-feedback alert alert-danger"
+                            style="width: 15rem"
+                          >
+                            Start Date is required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3" *ngIf="isUpdate">
+                        <div class="form-label">Start Date*</div>
+                        <p-calendar
+                          name="startDate"
+                          [(ngModel)]="startDate"
+                          dateFormat="dd/mm/yy"
+                          formControlName="firstCtrl3"
+                          [disabled]="true"
+                          [style]="{ width: '15rem' }"
+                        ></p-calendar>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="adjusting-flex">
+                          <div class="form-label">End Date*</div>
+                          <p-calendar
+                            [(ngModel)]="endDate"
+                            dateFormat="dd/mm/yy"
+                            [minDate]="minimumEndDate"
+                            formControlName="firstCtrl4"
+                            [style]="{ width: '15rem' }"
+                          ></p-calendar>
+                          <div
+                            *ngIf="
+                              (firstFormGroup.controls.firstCtrl4.touched ||
+                                firstFormGroup.controls.firstCtrl4.dirty ||
+                                submitted) &&
+                              firstFormGroup.controls.firstCtrl4.errors
+                                ?.required
+                            "
+                            class="invalid-feedback alert alert-danger"
+                            style="width: 15rem"
+                          >
+                            End Date is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="margin-top:1rem">
+                      <div class="checkbox-label">
+                        <label>Required Document*</label>
+                      </div>
+                      <div class="radio-buttons">
+                        <div class="row">
+                          <div
+                            style="margin-bottom: 2%"
+                            class="col-12 clr-text"
+                          >
+                            <div class="d-flex flex-wrap">
+                              <div
+                                *ngFor="let category of categories"
+                                class="p-field-checkbox"
+                                style="padding-right: 1rem"
+                              >
+                                <p-checkbox
+                                  name="group2"
+                                  [value]="category.name"
+                                  checkboxIcon="pi pi-check"
+                                  [inputId]="category.key"
+                                  formControlName="selectedCategories"
+                                  [(ngModel)]="selectedCategories"
+                                  (onChange)="
+                                    testCheckBoxTick(
+                                      $event,
+                                      category.key,
+                                      category.isSelected
+                                    )
+                                  "
+                                ></p-checkbox>
+                                <label [for]="category.key">{{
+                                  category.name
+                                }}</label>
+                              </div>
+                            </div>
+                            <div
+                              *ngIf="
+                                (firstFormGroup.controls.selectedCategories
+                                  .touched ||
+                                  firstFormGroup.controls.selectedCategories
+                                    .dirty ||
+                                  submitted) &&
+                                firstFormGroup.controls.selectedCategories
+                                  .errors?.required
+                              "
+                              class="invalid-feedback alert alert-danger"
+                              style="width: 28rem"
+                            >
+                              Please Select One Document
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="other-input">
+                      <span class="option">
+                        Please Specify Other Document :
+                        <br />
+                        (Can Add Upto 6 other documents)
+                      </span>
+                      &nbsp;
+                      <div formArrayName="otherDocument" *ngIf="!isUpdate">
+                        <span
+                          *ngIf="len <= 5 || len == 0"
+                          (click)="addQuantity()"
+                          class="plus"
+                        >
+                          <i
+                            class="pi pi-plus-circle"
+                            style="font-size: 1.5rem"
+                          ></i>
+                        </span>
+                        <span
+                          *ngIf="add"
+                          (click)="removeQuantity()"
+                          class="minus"
+                        >
+                          <i
+                            class="pi pi-minus-circle"
+                            style="font-size: 1.5rem"
+                          ></i>
+                        </span>
+                        <div
+                          *ngFor="
+                            let quantity of otherDocument().controls;
+                            let i = index
+                          "
+                          style="display: inline-flex"
+                        >
+                          <div [formGroupName]="i">
+                            <div *ngIf="i <= 5">
+                              <input
+                                style="
+                                  background-color: #f7f7f7;
+                                  border-color: rgba(112, 112, 112, 1);
+                                  height: 1.5rem;
+                                  width: 10rem;
+                                  margin-left: 1rem;
+                                  margin-bottom: 1rem;
+                                "
+                                type="text"
+                                class="form-control"
+                                formControlName="otherDocumentName"
+                                type="text"
+                              />
+                            </div>
+                            <div
+                              *ngIf="i == 6"
+                              class="invalid-feedback alert alert-danger"
+                            >
+                              Cannot add More than 6 other documents
+                            </div>
+                            <div
+                              *ngIf="
+                                submitted &&
+                                otherDocument()
+                                  .controls[i]?.get('otherDocumentName')
+                                  ?.hasError('required')
+                              "
+                              class="invalid-feedback alert alert-danger"
+                              style="width: 10rem"
+                            >
+                              Please Enter Other Document
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div formArrayName="otherDocument" *ngIf="isUpdate">
+                        <span
+                          *ngIf="len <= 5"
+                          (click)="addQuantity()"
+                          class="plus"
+                        >
+                          <i
+                            class="pi pi-plus-circle"
+                            style="font-size: 1.5rem"
+                          ></i>
+                        </span>
+                        <span
+                          *ngIf="add"
+                          (click)="removeQuantity()"
+                          class="minus"
+                        >
+                          <i
+                            class="pi pi-minus-circle"
+                            style="font-size: 1.5rem"
+                          ></i>
+                        </span>
+
+                        <div
+                          *ngFor="
+                            let quantity of otherDocument().controls;
+                            let i = index
+                          "
+                          style="display: inline-flex"
+                        >
+                          <div [formGroupName]="i">
+                            <div *ngIf="i <= 5">
+                              <input
+                                style="
+                                  background-color: #f7f7f7;
+                                  border-color: rgba(112, 112, 112, 1);
+                                  height: 1.5rem;
+                                  width: 10rem;
+                                  margin-left: 1rem;
+                                  margin-bottom: 1rem;
+                                "
+                                type="text"
+                                class="form-control"
+                                formControlName="otherDocumentName"
+                                type="text"
+                              />
+                            </div>
+                            <div
+                              *ngIf="i == 6"
+                              class="invalid-feedback alert alert-danger"
+                            >
+                              Cannot add More than 6 other documents
+                            </div>
+                            <div
+                              *ngIf="
+                                submitted &&
+                                otherDocument()
+                                  .controls[i]?.get('otherDocumentName')
+                                  ?.hasError('required')
+                              "
+                              class="invalid-feedback alert alert-danger"
+                              style="width: 10rem"
+                            >
+                              Please Enter Other Document
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-label" style="padding-top: 1rem">
+                      Genric Comment*
+                    </div>
+                    <textarea
+                      class="comments"
+                      pInputTextarea
+                      placeholder="Ex.Require in correct format..."
+                      formControlName="firstCtrl5"
+                      [(ngModel)]="comments"
+                      [readonly]="genricCommectReadOnly"
+                    >
+                    </textarea>
+                    <div
+                      *ngIf="
+                        (firstFormGroup.controls.firstCtrl5.touched ||
+                          firstFormGroup.controls.firstCtrl5.dirty ||
+                          submitted) &&
+                        firstFormGroup.controls.firstCtrl5.errors?.required
+                      "
+                      class="invalid-feedback alert alert-danger"
+                      style="width: 20rem"
+                    >
+                      Comment is required
+                    </div>
+                    <div style="margin-top: 2rem">
+                      <button
+                        class="btn btn-submit"
+                        type="submit"
+                        (click)="onSubmitForm1()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </p-tabPanel>
+              <p-tabPanel header="NDA">
+                <div style="margin: 1rem">
+                  <form [formGroup]="secondFormGroup">
+                    <div class="card">
+                      <div>
+                        <p-editor
+                          formControlName="secondCtrl"
+                          [(ngModel)]="tnc"
+                          [style]="{ height: '320px' }"
+                          [readonly]="termsAndConditions"
+                          
+                        ></p-editor>
+                      </div>
+                    </div>
+
+                    <div
+                      *ngIf="
+                        (secondFormGroup.controls.secondCtrl.touched ||
+                          secondFormGroup.controls.secondCtrl.dirty ||
+                          submitted) &&
+                        secondFormGroup.controls.secondCtrl.errors?.required
+                      "
+                      class="invalid-feedback alert alert-danger"
+                    >
+                      Terms and Conditions required
+                    </div>
+                    <div style="margin-top: 1rem">
+                      <button
+                        class="btn btn-submit"
+                        type="submit"
+                        (click)="onSubmitForm2()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </p-tabPanel>
+              <p-tabPanel header="Document Info" [disabled]="disabled">
+                <div *ngFor="let filetype of temparr">
+                  <div style="margin: 1rem">
+                    <mat-card class="fileCard">
+                      <mat-card-header>
+                        <mat-card-title style="color: #047CCF"
+                          >{{ filetype.documentType }} (Choose Files
+                          Below)</mat-card-title
+                        >
+
+                        <mat-card-subtitle style="color: #047CCF">
+                          <!-- <span> file(s) selected</span> -->
+                        </mat-card-subtitle>
+                        <mat-card-subtitle>
+                          <input
+                            #fileInput1
+                            type="file"
+                            (change)="selectFile($event, filetype.documentType)"
+                            class="custom-file-upload"
+                            ngModel
+                            multiple
+                          />
+
+                          <mat-form-field
+                            class="example-full-width"
+                            (click)="fileInput1.click()"
+                          >
+                            <input
+                              matInput
+                              placeholder="Choose Multiple Files"
+                              value="{{
+                                fileInput1.value.substr(
+                                  fileInput1.value.lastIndexOf('\\') + 1
+                                )
+                              }}"
+                            />
+                            <mat-icon matSuffix>folder_open</mat-icon>
+                          </mat-form-field>
+
+                          &nbsp;
+                        </mat-card-subtitle>
+                      </mat-card-header>
+
+                      <mat-card class="uploadCard">
+                        <div class="d-flex flex-wrap">
+                          <div class="flex-fill">
+                            <mat-card-header>
+                              <mat-card-title
+                                *ngIf="
+                                  !showProgressObject[filetype.documentType]
+                                "
+                                >No Upload in Progress!</mat-card-title
+                              >
+                              <mat-card-title
+                                *ngIf="
+                                  showProgressObject[filetype.documentType]
+                                "
+                                >Files</mat-card-title
+                              >
+                              <mat-card-subtitle
+                                *ngFor="
+                                  let uploadedFile of uploadedallFiles[
+                                    filetype.documentType
+                                  ];
+                                  index as i
+                                "
+                              >
+                                <div class="d-flex">
+                                  <mat-icon>insert_drive_file</mat-icon>
+                                  <div (click)="download(uploadedFile)">
+                                    {{ uploadedFile.name }}
+                                  </div>
+                                  <div
+                                    style="cursor: pointer"
+                                    (click)="
+                                      DeleteFile(
+                                        uploadedFile,
+                                        i,
+                                        filetype.documentType
+                                      )
+                                    "
+                                  >
+                                    <mat-icon>close</mat-icon>
+                                  </div>
+                                </div>
+                              </mat-card-subtitle>
+                            </mat-card-header>
+                          </div>
+                          <div class="flex-fill">
+                            <mat-card-title style="font-size: 20px">
+                              Comment
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                              <div>
+                                <div>
+                                  <textarea
+                                    style="height: 7rem; width: 100%"
+                                    pInputTextarea
+                                    [(ngModel)]="
+                                      allComments[filetype.documentType]
+                                    "
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </mat-card-subtitle>
+                          </div>
+                        </div>
+                        <button
+                          (click)="uploadingCurrentDocs(filetype.documentType)"
+                          class="btn btn-submit"
+                          style="margin-bottom: 1.25em; margin-left: 1em"
+                        >Upload</button>
+                      </mat-card>
+                    </mat-card>
+                  </div>
+                </div>
+                <div>
+                  
+                  <div style="margin: 1rem">
+                    <button
+                      style="width: 9rem"
+                      class="btn btn-submit"
+                      (click)="submit()"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      *ngIf="isUpdate == false"
+                      style="margin-left: 1rem"
+                      class="btn btn-clear"
+                      (click)="reset()"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </p-tabPanel>
+            </p-tabView>
+          </div>
+
+          <p-confirmDialog
+            [style]="{ width: '50vw' }"
+            [baseZIndex]="10000"
+            rejectButtonStyleClass="p-button-text"
+          ></p-confirmDialog>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loading-spinner
+    class="spinnerClass center-aligned"
+    *ngIf="isLoading"
+  ></app-loading-spinner>
+  <app-loading-spinner
+  class="spinnerClass center-aligned"
+  *ngIf="isLoadingTab"
+  ></app-loading-spinner>
+</div>
+

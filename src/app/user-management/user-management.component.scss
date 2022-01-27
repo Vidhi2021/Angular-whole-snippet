@@ -1,0 +1,464 @@
+
+p {
+  margin-bottom: 0;
+}
+
+.card {
+  background-color: #f5f5f5;
+}
+
+
+.my-um-table-container {
+  // display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1em;
+  margin-top: 3%;
+  // height: calc(100vh - 10px);
+}
+
+@media (max-width: 890px) {
+  .my-um-table-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.text-content {
+  align-self: center;
+}
+
+.no-results-found {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: red;
+}
+
+.card-header {
+  text-align: center;
+  cursor: pointer;
+}
+.icon-action {
+  margin-top: -10px;
+  float: right;
+  color: rgb(22, 153, 210);
+}
+
+.age-analysis {
+  border-radius: 0;
+  background-color: #ffffff;
+  padding-bottom: 2%;
+}
+
+.table-header > th {
+  font-size: 1rem;
+  color: #1699d2;
+  border-bottom: 1px solid rgb(22,153,210);
+  border-top-color: rgb(22,153,210);
+}
+.table-row > td {
+  font-size: 0.5rem;
+}
+td {
+  border-bottom-color: #047CCF;
+  border-top-color: #047CCF;
+}
+
+// .twentyseven {
+//   width: 25%;
+//   display: inline-block;
+// }
+.actualNumber {
+  // width: 75%;
+  display: inline-block;
+}
+//Modal Popup
+.input-group {
+  .input-group-text {
+   // background-color: #F7F7F7;
+   background-color: #FFFF;
+    border-color: 1px solid #ced4da;
+  } 
+}
+.form-label {
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #707070;
+  font-weight: bold;
+}
+.clr-text {
+  margin: auto;
+}
+.accright-label {
+  padding-top: 2%;
+  font-size: 12px;
+  color: #707070;
+  font-weight: bold;
+}
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  margin-right: 4px;
+  cursor: pointer;
+  // font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  padding-top: 3%;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+  border: 2px solid rgb(22,153,210);
+  border-radius: 4px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 0px;
+  width: 8px;
+  height: 18px;
+  border: solid rgb(22,153,210);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+// :host ::ng-deep .ar-checkbox{
+//   .ui-chkbox-box {
+//     border: 2px solid #047CCF !important;
+//   }
+//   .ui-chkbox-box.ui-state-active{
+//     background-color: white;
+//     color: #047CCF !important;
+//   }
+//   .ui-chkbox-box.ui-state-active:hover {
+//     background-color: white !important;
+//   }
+// }
+.ar-checkbox {
+  margin-right: 0px;
+}
+
+
+:host ::ng-deep .table-header-test {
+  border-collapse: unset !important;
+  border-spacing: 2px 2px !important;
+  th {
+    // background-color: grey !important;
+    color: #575757 !important;
+    text-align: center !important;
+  // border-radius: 10px !important;
+    border: 0px !important;
+    line-height: 28px;
+    font-size: 12px;
+  }
+}
+
+.ptable-header {
+  .ui-table-wrapper {
+    overflow-x: unset !important;
+  }
+  tr {
+    // border-collapse: unset !important;
+    // padding-bottom: 1% !important;
+    border: 0px !important;
+    border-bottom: 1px solid #B1B1B1 !important;
+    background-color: rgb(255, 255, 255) !important
+  }
+  .ui-table table {
+    // border-collapse: unset !important;
+    // border-spacing: 0 7px !important;
+    // margin-bottom: 10px !important;
+  }
+  td {
+    border: 0px !important;
+    text-align: center !important;
+    color: #575757 !important;
+    line-height: 28px;
+    font-size: 12px;
+  }
+ 
+  .green {
+    border-left: 8px solid #4EE753 !important;
+  }
+  .red {
+    border-left: 8px solid red !important;
+  }
+  .yellow {
+    border-left: 8px solid #FFDC43 !important;
+  }
+  .orange {
+    border-left: 8px solid orange !important;
+  }
+  .disable {
+    div {
+      color: grey !important;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+    }
+    div:nth-child(1){
+      margin-right: 3%;
+    }
+  }
+  .ui-multiselect .ui-multiselect-trigger {
+    background: none !important;
+  }
+  .ui-multiselect, .ui-multiselect:hover {
+    border: 1px solid rgb(22,153,210);
+    padding: 2%;
+    padding-left: 1%;
+  }
+  .mob-input {
+    .ui-inputtext, .ui-inputtext:enabled:hover:not(.ui-state-error) {
+      border: 1px solid rgb(22,153,210);
+      padding: 1%;
+      padding-left: 1%;
+    }
+  }
+  .ui-multiselect {
+    width: 80%;
+    .ui-multiselect-label {
+      padding: 0;
+      padding-right: 6%;
+    }
+    .ui-multiselect-label-container {
+      width: 100% !important;
+      text-align: left !important;
+    }
+  }
+  .ui-multiselect-panel {
+    @extend .ui-multiselect;
+    .ui-multiselect-header{
+      background: none;
+    }
+    .ui-chkbox-box {
+      border-color: rgb(22,153,210)
+    }
+    .ui-chkbox-box.ui-state-active{
+      background-color: white !important;
+      color: #047CCF !important;
+    }
+    .ui-multiselect-item.ui-state-highlight {
+      background-color: white;
+      color: #333333;
+    }
+  }
+  .ui-paginator {
+    text-align: left !important;
+    border: 0px;
+    background-color: white;
+    margin-top: 2%;
+  }
+  .ui-paginator-first, .ui-paginator-prev{
+    display: none;
+  }
+  .ui-paginator-page, .ui-paginator-next, .ui-paginator-last {
+    border: 1px solid #DEDEDE !important;
+    border-radius:5px !important;
+    margin: 0px 2px 0px 2px;
+  }
+  .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active{
+    background-color: white !important;
+    color: #047CCF !important;
+    border-color: #047CCF !important;
+  }
+ 
+ .ui-paginator-page {
+  //  margin-left: 5% !important;
+    margin: 0px 2px 0px 2px !important;
+  }
+  input:invalid {
+    border-color: #047CCF;
+  }
+  .ui-inputtext:focus:invalid{
+    border-color: #047CCF !important;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25) !important;
+  }
+  .ui-inputtext:hover{
+    border-color: none !important;
+  }
+}
+.action-btns{
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  div:nth-child(1){
+    margin-right: 3%;
+  }
+  div {
+    text-decoration: underline;
+    color: #047CCF;
+  }
+}
+#sm:disabled {
+  .checkmark{
+    border-color: grey;
+  }
+}
+.error{
+  // color: #dc3545;
+  font-size: 13px;
+  width: 22%;
+}
+.clear{
+  cursor:  pointer;
+  text-decoration: underline;
+  font-size: 12px;
+}
+.um-disable{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+:host ::ng-deep .confirm-dialog {
+  .ui-button {
+    background-color: #047CCF !important;
+  }
+}
+.um-table .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #047CCF;
+  border-color: #047CCF;
+  color: #ffffff;
+}
+// The search bar section.
+:host ::ng-deep {
+  #um-table {
+    .p-datatable-header {
+      background-color: white;
+      border:none;
+    }
+    .search-header {
+      display: flex;
+      background-color: #ffff;
+      //width:100%;
+      .search-header-user {
+        margin: auto;
+        margin-left: 0;
+        color: rgb(22,153,210);
+        font-size: 12px;
+      }
+     
+      .color-legend {
+        text-align: right;
+        //width: 37%;
+        //word-break:initial;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 2%;
+        font-size: 12px;
+        color: rgba(112, 112, 112, 1)
+      }
+     }
+    }
+}
+.search-header-search {
+  //padding-top:2%;
+  width: 40%;
+  
+  .pi {
+    position: absolute;
+    text-align: right;
+    margin-top: 0.4%;
+    padding-left: 12%;
+    color:#047CCF;
+    //right:0;
+  }
+  input {
+    // width: 50% !important;
+    //border-color: rgba(112, 112, 112, 1) !important;
+    border-radius: 0.25rem;
+    border:1px solid;
+    border-color:#047CCF;
+    color:black;
+    float: right;
+    width: 100%;
+    padding:2px;
+    cursor: pointer;
+    background-color: rgba(247, 247, 247, 1);
+  }
+  input:focus{
+    border:1px solid;
+    border-radius: 0.25rem;
+    border-color:#047CCF;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  ::-webkit-input-placeholder{
+    color:#047CCF;
+  }
+}
+
+//passwordcss
+:host ::ng-deep .p-password input {
+  width: 15rem;
+  background-color: #FFFF;
+  border: 1px solid #ced4da;
+  height:calc(1.5em + .75rem + 2px);
+}
+@media only screen and (max-width: 1024px) {
+  .search-header-search {
+    //padding-top:2%;
+    width: 40%;
+    
+    .pi {
+      position: absolute;
+      text-align: right;
+      margin-top: 0.4%;
+      padding-left:16%;
+      color:#047CCF;
+      //right:0;
+    }
+  }
+
+}
+@media only screen and (max-width: 768px) {
+  .search-header-search {
+    //padding-top:2%;
+    width: 40%;
+    
+    .pi {
+      position: absolute;
+      text-align: right;
+      margin-top: 1.5%;
+      padding-left: 30%;
+      color:#047CCF;
+      //right:0;
+    }
+  }
+
+}

@@ -1,0 +1,30 @@
+.inner-main-table
+{
+    border-radius: 0;
+    background-color: #ffffff;
+    padding: 2% 2% 2% 2%;
+    margin: 2%;
+}
+::placeholder{
+    color:#047CCF;
+  }
+:host ::ng-deep .p-datatable .p-datatable-header {
+    background: #f4f4f4;
+   // color: #333333;
+    border: none;
+    border-width: 1px 1px 0 1px;
+    padding: 0.857rem 1rem;
+    font-weight: 700;
+}
+.pi-search
+{
+   position:absolute;
+   padding-left:180px;
+   padding-top:11px;
+   color:#047CCF;
+
+}
+// .pi-search
+// {
+//     padding-bottom:3px;
+// }

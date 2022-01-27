@@ -1,0 +1,71 @@
+.navbar
+{
+  
+.highlightMenu:before {
+  content: "";
+  position: absolute;
+  //left: 25%;
+  bottom: -28%;
+  // height  : 1px;
+  width: 50%; /* or 100px */
+  //border-bottom: 4px solid rgb(22, 153, 210);
+  border-bottom: 4px solid #047CCF;
+}
+}
+
+
+.background_color {
+  background: #ffff;
+}
+.nav-link {
+  font-size: 1rem;
+}
+.pi-user:before {
+  content: "\e939";
+  margin: 1rem;
+}
+.username {
+  font-size: 1rem;
+  padding-right: 0.3125rem;
+  color: #047CCF;
+}
+.user-details {
+  max-height: 2.5em;
+  cursor: pointer;
+  margin: 0.313rem;
+}
+.centering-routers {
+  margin:0 auto;
+}
+
+.highlightMenu {
+  //color: rgb(22, 153, 210) !important;
+  color:#047CCF !important;
+  // text-decoration: underline;
+  // border-bottom: 2px solid rgb(22, 153, 210);
+  position: relative;
+}
+
+.highlightMenu:before {
+  content: "";
+  position: absolute;
+  left: 25%;
+  bottom: -28%;
+  // height  : 1px;
+  width: 50%; /* or 100px */
+  //border-bottom: 4px solid rgb(22, 153, 210);
+  border-bottom: 4px solid #047CCF;
+}
+
+@media(max-width: 1000px){
+  .highlightMenu:before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: -28%;
+    // height  : 1px;
+    width: 50%; /* or 100px */
+    //border-bottom: 4px solid rgb(22, 153, 210);
+    border-bottom: 4px solid #047CCF;
+  }
+}

@@ -1,0 +1,297 @@
+<div class="container-fluid main-container">
+  <div class="navigation-area">
+    <div>
+      <span class="um-breadcrum">
+        <a class="links" routerLink="/home">Home </a>
+        / Event-Details
+      </span>
+    </div>
+  </div>
+  <div class="um-container">
+    <div class="request-inner-container">
+      <div class="header">
+        <p class="header-card"><b>Event-Details</b></p>
+      </div>
+      <!-- <div class="action button">
+    </div> -->
+      <div class="event-table">
+        <p-table
+          #dt1
+          [ngClass]="'ptable-recent'"
+          [value]="events"
+          dataKey="id"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10, 25, 50]"
+          [responsive]="true"
+          
+          styleClass="p-datatable-customers p-datatable-gridlines"
+          [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="[
+            'eventName',
+            'requestedBy',
+            'createdBy',
+            'status',
+            'startDate',
+            'endDate'
+          ]"
+        >
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex">
+              <button
+                pButton
+                label="Clear"
+                class="p-button-outlined"
+                (click)="clear(dt1)"
+                icon="pi pi-filter-slash"
+              ></button>
+              <span class="p-input p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  style="border-color: #047CCF"
+                  (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                  placeholder="Search keyword"
+                />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="eventId">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  Event ID
+                  <p-sortIcon field="eventId"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="eventId"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th
+                *ngIf="user_role.toLowerCase() != 'vendor'"
+                pSortableColumn="eventName"
+              >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  Event Name
+                  <p-sortIcon field="eventName"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="eventName"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th
+                *ngIf="user_role.toLowerCase() != 'vendor'"
+                pSortableColumn="eventDisplayName"
+              >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  Event Display Name
+                  <p-sortIcon field="eventDisplayName"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="displayEventName"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th
+                *ngIf="user_role.toLowerCase() == 'vendor'"
+                pSortableColumn="eventName"
+              >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  Event Name
+                  <p-sortIcon field="eventName"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="eventName"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center"
+                  pSortableColumn="createdBy"
+                >
+                  Created By
+                  <p-sortIcon field="createdBy"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="createdBy"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center"
+                  pSortableColumn="requestedBy"
+                >
+                  Requested By
+                  <p-sortIcon field="requestedBy"></p-sortIcon>
+                  <p-columnFilter
+                    field="requestedBy"
+                    matchMode="in"
+                    display="menu"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  >
+                    <ng-template
+                      pTemplate="filter"
+                      let-value
+                      let-filter="filterCallback"
+                    >
+                      <p-multiSelect
+                        [ngModel]="value"
+                        placeholder="Any"
+                        (onChange)="filter($event.value)"
+                        optionLabel="name"
+                      >
+                        <ng-template let-option pTemplate="item">
+                          <div class="p-multiselect-representative-option">
+                            <img
+                              [alt]="option.label"
+                              width="32"
+                              style="vertical-align: middle"
+                            />
+                            <span class="p-ml-1">{{ option.name }}</span>
+                          </div>
+                        </ng-template>
+                      </p-multiSelect>
+                    </ng-template>
+                  </p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center"
+                  pSortableColumn="startDate"
+                >
+                  Start Date
+                  <p-sortIcon field="startDate"></p-sortIcon>
+                  <p-columnFilter
+                    type="date"
+                    field="startDate"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center"
+                  pSortableColumn="endDate"
+                >
+                  End Date
+                  <p-sortIcon field="endDate"></p-sortIcon>
+                  <p-columnFilter
+                    type="date"
+                    field="endDate"
+                    display="menu"
+                  ></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center"
+                  pSortableColumn="status"
+                >
+                  Status
+                  <p-sortIcon field="status"></p-sortIcon>
+                  <p-columnFilter
+                    field="status"
+                    matchMode="equals"
+                    display="menu"
+                  >
+                    <ng-template
+                      pTemplate="filter"
+                      let-value
+                      let-filter="filterCallback"
+                    >
+                      <p-dropdown
+                        [ngModel]="value"
+                        [options]="statuses"
+                        (onChange)="filter($event.value)"
+                        placeholder="Any"
+                      >
+                        <ng-template let-option pTemplate="item">
+                          <span>{{ option.label }}</span>
+                        </ng-template>
+                      </p-dropdown>
+                    </ng-template>
+                  </p-columnFilter>
+                </div>
+              </th>
+             
+            </tr>
+            <app-loading-spinner
+              style="padding-left: 275%"
+              *ngIf="isLoading"
+            ></app-loading-spinner>
+          </ng-template>
+          <ng-template pTemplate="body" let-row let-columns>
+            <tr>
+              <td>
+                <a
+                  (click)="redirect(row)"
+                  [ngClass]="{ highlightMenu: selectedTab == 'event-details' }"
+                  (click)="highlight('event-details')"
+                  class="nav-link"
+                  >{{ row.eventId }}</a
+                >
+              </td>
+              <td *ngIf="user_role.toLowerCase() != 'vendor'">
+                {{ row.eventName }}
+              </td>
+              <td>
+                {{ row.eventDisplayName }}
+              </td>
+              <!-- <td *ngIf="user_role.toLowerCase() == 'vendor'">
+                <a
+                  [routerLink]="['/event-details', row.eventName]"
+                  [ngClass]="{ highlightMenu: selectedTab == 'event-details' }"
+                  (click)="highlight('event-details')"
+                  class="nav-link"
+                >
+                  {{ row.eventDisplayName }}
+                </a>
+              </td> -->
+
+              <td>
+                {{ row.createdBy }}
+              </td>
+              <td>
+                {{ row.requestedBy }}
+              </td>
+              <td>
+                {{ row.startDate }}
+              </td>
+              <td>
+                {{ row.endDate }}
+              </td>
+              <td>
+                {{ row.status }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+              <td
+                *ngIf="!isLoading"
+                [attr.colspan]="columns?.length + 1"
+                colspan="7"
+              >
+                No customers found.
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

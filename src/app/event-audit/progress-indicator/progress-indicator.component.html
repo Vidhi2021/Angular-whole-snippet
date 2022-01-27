@@ -1,0 +1,94 @@
+<div class="progressbar">
+    <div
+      class="progress-line-container"
+      [ngStyle]="{ 'width.%': percentageComplete }"
+    >
+      <div class="line"></div>
+      <div class="greyLine"  [ngStyle]="{ 'width.%': 150 }"></div>
+    </div>
+    <div class="images">
+      <div></div>
+      
+      <ng-template #tipContent>
+        {{ tooltipDefaultText }}
+       </ng-template>
+  
+      <div>
+        <img
+          class="circle-image"
+          [ngClass]="{ changeBackground: currentStage > 0 }"
+          [ngStyle]="{ 'animation-delay.s': 0.5 }"
+          src="./assets/images/request.png"
+          [ngbTooltip]="tipContent"
+          placement="top"
+          [autoClose]="false"
+          triggers="manual"
+          #t1="ngbTooltip"
+        />
+      </div>
+      <div>
+            
+      </div>
+      <div>
+        <img
+          class="circle-image"
+          [ngClass]="{ changeBackground: currentStage > 1 }"
+          [ngStyle]="{ 'animation-delay.s': (3 * 1) / (currentStage - 1) + 0.4 }"
+          src="./assets/images/inprogress.png"
+          [ngbTooltip]="tipContent"
+          placement="top"
+          [autoClose]="false"
+          triggers="manual"
+          #t2="ngbTooltip"
+        />
+      </div>
+      <div>
+  
+  
+  
+      </div>
+      <div>
+        <img
+          class="circle-image"
+          [ngClass]="{ changeBackground: currentStage > 2 }"
+          [ngStyle]="{ 'animation-delay.s': (3 * 2) / (currentStage - 1) + 0.3 }"
+          src="./assets/images/closed.png"
+          [autoClose]="false"
+          [ngbTooltip]="tipContent"
+          placement="top"
+          triggers="manual"
+          #t3="ngbTooltip"
+        />
+      </div>
+      <div></div>
+      <div>
+        <img
+          class="circle-image"
+          [ngClass]="{ changeBackground: currentStage > 3 }"
+          [ngStyle]="{ 'animation-delay.s': (3 * 3) / (currentStage - 1) + 0.2 }"
+          src="./assets/images/concluded.jpg"
+          [ngbTooltip]="tipContent"
+          placement="top"
+          [autoClose]="false"
+          triggers="manual"
+          #t4="ngbTooltip"
+        />
+      </div>
+      <div></div>
+      
+    
+      <div></div>
+    </div>
+  </div>
+  <div class="progressbar-text">
+    <div></div>
+    <div class="text">Requested</div>
+    <div class="text">In Progress</div>
+    <div class="text">Closed</div>
+    <div class="text" *ngIf="!notConcluded && !cancelled">Concluded</div>
+    <div class="text" *ngIf="notConcluded">Not Concluded</div>
+    <div class="text" *ngIf="cancelled">Cancelled</div>
+    
+    <div></div>
+  </div>
+  

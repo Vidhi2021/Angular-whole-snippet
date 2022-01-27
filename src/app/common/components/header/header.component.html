@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg navbar-light background_color">
+  <a class="navbar-brand" href="#"
+    ><img
+      src="./assets/Angular.png"
+      class="card-img-left user-details"
+      alt="..."
+  /></a>
+  <p-confirmDialog
+  header="Action"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#menu"
+    aria-controls="menu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="centering-routers">
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a
+            [ngClass]="{ highlightMenu: selectedTab == 'home' }"
+            (click)="highlight('home')"
+            class="nav-link"
+            routerLinkActive="highlightMenu"
+            routerLink="/home"
+            >Home
+          </a>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li
+          class="nav-item active"
+          *ngIf="
+            user_role.toLowerCase() == 'admin' ||
+            user_role.toLowerCase() == 'business owner'
+          "
+        >
+          <a
+            [ngClass]="{ highlightMenu: selectedTab == 'um' }"
+            (click)="highlight('um')"
+            class="nav-link"
+            routerLink="/user-management"
+            routerLinkActive="highlightMenu"
+            >User Management
+          </a>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item active">
+          <a
+            [ngClass]="{ highlightMenu: selectedTab == 'event-details' }"
+            (click)="highlight('event-details')"
+            class="nav-link"
+            routerLinkActive="highlightMenu"
+            routerLink="/event-details"
+            >Event-Details</a
+          >
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li
+          class="nav-item active"
+          *ngIf="user_role.toLowerCase() == 'procurement manager'"
+        >
+          <a
+            [ngClass]="{ highlightMenu: selectedTab == 'create-event' }"
+            (click)="highlight('create-event')"
+            class="nav-link"
+            routerLinkActive="highlightMenu"
+            routerLink="/create-event"
+            >Create An Event
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <div class="container-fluid">
+        <div class="row">
+          <small class="username"
+            ><b> Welcome {{ display_name }} </b><br />
+            Logged in as {{ user_role }}
+          </small>
+          <div style="margin: 4px">
+            <i
+              class="pi pi-user"
+              style="font-size: 2rem; color: #047CCF"
+              aria-hidden="true"
+            ></i>
+          </div>
+
+          <div>
+            <img
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Logout"
+              (click)="logout()"
+              src="./assets/Icon feather-power.svg"
+              class="user-details"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>

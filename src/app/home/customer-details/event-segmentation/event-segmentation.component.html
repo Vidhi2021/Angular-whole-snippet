@@ -1,0 +1,33 @@
+<!-- <div class="d-flex justify-content-between  small-screen" style="margin-top: 1rem;">
+  <div class="p-2 flex-fill bd-highlight"> -->
+<div class="card event-border resize">
+  <div class="card-body" >
+    <div class="card-title">
+      <b>Event Status Comparison</b>
+    </div>
+    <div
+      *ngIf="isLoading; else graphdata"
+      class="card-text"
+      style="
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <ng-template #graphdata>
+      <div class="card-text">
+        <p-chart
+          type="doughnut"
+          [data]="basicData"
+          [options]="options"
+        ></p-chart>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- </div>
+</div> -->

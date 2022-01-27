@@ -1,0 +1,1572 @@
+<p-toast [baseZIndex]="10000"></p-toast>
+<form
+  action="https://angular.co.za/sample-project/downloadFile"
+  method="post"
+  name="downloadForm"
+  style="display: none"
+  onSubmit="https://angular.co.za/sample-project/downloadFile"
+>
+  <input
+    #someInput
+    type="text"
+    id="documentId"
+    name="documentId"
+    style="display: none"
+  />
+  <input
+    type="submit"
+    #search
+    id="downloadbtn"
+    onclick="downloadForm.submit()"
+    style="display: none"
+  />
+</form>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  key="submit"
+></p-confirmDialog>
+<div class="container-fluid main-container">
+  <div class="navigation-area">
+    <div class="" style="margin-bottom: 2%">
+      <span class="um-breadcrum">
+        <a class="links" routerLink="/home">Home </a>
+        <a class="links" routerLink="/event-details">/ Event-Details</a>/
+        {{ display_name }}
+      </span>
+    </div>
+  </div>
+  <div class="details_div">
+    <!--Header events details starts-->
+    <div class="group">
+      <input
+        type="text"
+        class="header-details"
+        style="width: 12rem"
+        value="Event Progress"
+        readonly
+      />
+    </div>
+    <div class="header-events">
+      <!-- <p-tabView>
+        <p-tabPanel style="width:10rem" header="Event Progress"> -->
+      <div class="row" style="margin: 1rem">
+        <div
+          class="col-sm-2"
+          *ngIf="
+            event_status.toLowerCase() == 'requested' ||
+            event_status.toLowerCase() == 'scheduled' ||
+            event_status.toLowerCase() == 'in progress' ||
+            event_status.toLowerCase() == 'closed'
+          "
+          style="display: flex"
+        >
+          <p class="header-card-details"><b>Event Name:</b></p>
+          <span style="padding-top: 0.8rem"
+            ><b>{{ eName }}</b></span
+          >
+        </div>
+        <div
+          class="col-sm-3"
+          *ngIf="
+            event_status.toLowerCase() == 'concluded' ||
+            event_status.toLowerCase() == 'not concluded' ||
+            event_status.toLowerCase() == 'cancelled'
+          "
+          style="display: flex"
+        >
+          <p class="header-card-details"><b>Event Name:</b></p>
+          <span style="padding-top: 0.8rem"
+            ><b>{{ eName }}</b></span
+          >
+        </div>
+        <div class="col-sm-6">
+          <app-progress-indicator
+            [eventStatus]="event_status"
+          ></app-progress-indicator>
+        </div>
+        <!-- <div class="col-sm-6" *ngIf="user_role.toLowerCase() == 'vendor'"></div> -->
+        <div
+          class="col-sm-1"
+          *ngIf="
+            event_status.toLowerCase() == 'requested' ||
+            event_status.toLowerCase() == 'scheduled' || 
+            event_status.toLowerCase() == 'in progress' ||
+            event_status.toLowerCase() == 'closed'
+          "
+        ></div>
+        <div
+          class="col-sm-3"
+          style="float: right; display: inline-flex"
+          *ngIf="
+            event_status.toLowerCase() == 'in progress' || 
+            event_status.toLowerCase() == 'closed' ||
+            event_status.toLowerCase() == 'cancelled'
+          "
+        >
+          <p class="header-card-details"><b>Time Remaining:</b></p>
+          <span style="padding-top: 0.8rem"
+            ><b
+              >{{ days }} Days {{ hours }}:{{ minutes }}:{{ seconds }}</b
+            ></span
+          >
+        </div>
+        <div
+          class="col-sm-3"
+          *ngIf="
+            (event_status.toLowerCase() == 'concluded' ||
+              event_status.toLowerCase() == 'not concluded') &&
+            user_role.toLowerCase() != 'vendor'
+          "
+        >
+          <button
+            style="
+              color: #047CCF;
+              border: 1px solid #047CCF;
+              display: grid;
+              justify-self: right;
+              float: right;
+            "
+             [ngClass]="{
+              disabledd: disableExport
+            }"
+            [disabled]="disableExport"
+            class="btn"
+            (click)="exportAsXLSX()"
+          >
+            Export
+          </button>
+        </div>
+      </div>
+      <!-- </p-tabPanel>
+      </p-tabView> -->
+    </div>
+    <!-- header events details end-->
+    <div class="row" style="margin-right: unset; margin-left: unset">
+      <!-- scope of wok -->
+      <div
+        class="col-sm-6"
+        style="padding: unset"
+        *ngIf="user_role.toLowerCase() != 'vendor'"
+      >
+        <div class="group">
+          <input
+            type="text"
+            class="header-details"
+            style="width: 12rem"
+            value="Internal Management"
+            readonly
+          />
+        </div>
+        <div
+          class="card event-details-colums-adjustment-left"
+          style="height: 100%; border: 1px solid black"
+        >
+          <div class="" style="margin: 1rem">
+            <div class="form">
+              <div class="request-form-grid">
+                <div class="">
+                  <i
+                    class="pi pi-pencil"
+                    *ngIf="
+                      user_role.toLowerCase() == 'business owner' &&
+                      event_status.toLowerCase() != 'concluded' &&
+                      event_status.toLowerCase() != 'not concluded' &&
+                      event_status.toLowerCase() != 'closed'
+                    "
+                    style="
+                      font-size: 1rem;
+                      float: right;
+                      margin: 1rem;
+                      cursor: pointer;
+                      color: #047CCF;
+                    "
+                    [ngClass]="{
+                      highlightMenu: selectedTab == 'request-event'
+                    }"
+                    [routerLink]="['/updateRequest-event', eventId]"
+                  ></i>
+                  <div class="d-flex flex-wrap">
+                    <div class="adjusting-flex">
+                      <div class="form-label">Event Name*</div>
+                      <span style="word-wrap: inherit">{{ eName }}</span>
+                    </div>
+                    <div class="adjusting-flex">
+                      <div class="form-label">Procurement Manager*</div>
+                      <span>{{ pName }}</span>
+                    </div>
+                   
+                    <div class="adjusting-flex">
+                      <div class="form-label">ra team*</div>
+                    
+                      <span>{{ bdName }}</span>
+                    </div>
+                    <div class="adjusting-flex">
+                      <div class="form-label">qa team*</div>
+                      <span *ngFor="let at of atName" >{{ at.fullName }}</span>
+                    
+                    </div>
+                  </div>
+
+                  <div style="padding: 0.5rem">
+                    <div>
+                      <div>
+                        <div style="margin-bottom: 2%">
+                          <label class="checkbox-label"
+                            >Required Document*</label
+                          >
+                          <div class="d-flex flex-wrap">
+                            <div
+                              *ngFor="let category of categories; let i = index"
+                              class="p-field-checkbox"
+                              style="padding-right: 1rem"
+                            >
+                              <p-checkbox
+                              name="group2"
+                              [value]="category.name"
+                              [inputId]="category.key"
+                              [(ngModel)]="selectedCategories"
+                              [disabled]="disableCheck"
+                              ></p-checkbox>
+                              <label [for]="category.key">{{
+                                category.name
+                              }}</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="other-input" style="padding:0.5rem">
+                    <span class="form-label">Other Document*:</span>
+                    &nbsp;
+                    <span>{{ otherDocumentbyBo }}</span>
+                  </div>
+                  <div class="adjusting-flex">
+                    <div class="form-label">Comments*</div>
+                    <div class="input">
+                      <textarea
+                        readonly
+                        class="form-control disable-form-field"
+                        [(ngModel)]="eComment"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="adjusting-flex">
+                    <div class="form-label">Scope Of Work*:</div>
+                    
+                    <span (click)="showDialog()" class="view">View</span>
+                    &nbsp;
+                   <span *ngIf="Dscope" (click)="showDownload()"><a class="n-link">| &nbsp; Download</a></span>
+                  </div>
+                  <!--concluded events starts-->
+                  <div
+                    class="concluded-events"
+                    *ngIf="
+                      user_role.toLowerCase() == 'ra team' &&
+                      event_status.toLowerCase() == 'closed' &&
+                      awarded != null
+                    "
+                  >
+                    <p class="header-card-details"><b>Final Approval</b></p>
+                    <div class="adjusting-flex" style="display: inline-flex;padding-bottom:1rem">
+                      <div class="form-label" style="padding-right: 1rem">
+                        Awarded To* :
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control disable-create-field"
+                        style="width: 12rem; height: 2rem"
+                        [(ngModel)]="finalAwarded"
+                        readonly
+                      />
+
+                      <label class="radio">
+                        <input
+                          type="radio"
+                          name="decision"
+                          (click)="check('approve')"
+                        />
+                        Approve
+                      </label>
+                      <label class="radio">
+                        <input
+                          type="radio"
+                          name="decision"
+                          (click)="check('reject')"
+                        />
+                        Reject
+                      </label>
+                      &nbsp;&nbsp;&nbsp;
+                      <div class="reason" *ngIf="rejected">
+                        <label class="form-label">Reason*</label>
+                        <input
+                          type="text"
+                          class="Treason"
+                          [(ngModel)]="concludeReason"
+                          id="reason"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        class="btn btn-conclude"
+                        (click)="closedEvent(concludeReason)"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                  <!--concluded events ends-->
+                </div>
+
+                <p-dialog
+                  header="Scope of Work"
+                  [(visible)]="display"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                >
+                  <div [innerHtml]="eScope"></div>
+
+                  <ng-template pTemplate="footer">
+                    <p-button
+                      icon="pi pi-check"
+                      (click)="display = false"
+                      label="Ok"
+                      styleClass="p-button-text"
+                    ></p-button>
+                  </ng-template>
+                </p-dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="user_role.toLowerCase() != 'vendor'"
+        class="col-sm-6"
+        style="padding: unset"
+      >
+        <div class="group">
+          <input
+            type="text"
+            class="header-details"
+            style="width: 12rem; margin-left: 1rem"
+            value="Event Details"
+            readonly
+          />
+        </div>
+        <div
+          class="card event-details-colums-adjustment-right"
+          style="height: 100%; border: 1px solid black"
+        >
+          <!-- <p class="header-card-details">
+            <b>Event Information</b>
+          </p> -->
+
+          <div>
+            <!--  <p class="header-card-details"><b>My Event Information</b></p> -->
+            <i
+              class="pi pi-pencil"
+              *ngIf="
+                user_role.toLowerCase() == 'procurement manager' &&
+                event_status.toLowerCase() != 'concluded' &&
+                event_status.toLowerCase() != ' not concluded' &&
+                event_status.toLowerCase() != 'closed' &&
+                event_status.toLowerCase() != 'requested'
+              "
+              style="
+                font-size: 1rem;
+                float: right;
+                cursor: pointer;
+                color: #047CCF;
+                padding-top: 1rem;
+                padding-right: 1rem;
+              "
+              [routerLink]="['/updateCreate-event', eventId]"
+            ></i>
+          </div>
+          <div class="form">
+            <div
+              class="request-form-grid"
+              style="padding-left: 2%;padding-top:1rem "
+            >
+              <div class="">
+                <div class="d-flex flex-wrap">
+                  <div class="adjusting-flex">
+                    <div class="form-label">Display Name*</div>
+                    <!-- <input
+                        readonly
+                        type="text"
+                        class="form-control disable-form-field"
+                        style="width: 12rem"
+                        placeholder="Enter Event Name"
+                        [(ngModel)]="display_name"
+                      /> -->
+                    <span class="">{{ display_name }}</span>
+                  </div>
+                  <div class="adjusting-flex">
+                    <div class="form-label">NDA*</div>
+                    <span *ngIf="event_status.toLowerCase() !='requested'"(click)="showDialog1()" class="view">View</span>
+                    &nbsp;
+                    <a *ngIf="event_status.toLowerCase() !='requested'" (click)="downloadPdf()">| &nbsp; Download</a>
+                  </div>
+                  <!-- </div>
+                  <div class="d-flex flex-wrap"> -->
+                  <div class="adjusting-flex">
+                    <div class="form-label">Start Date*</div>
+                    <!-- <p-calendar
+                        class="disabledcalendar-control"
+                        [(ngModel)]="startDate"
+                      ></p-calendar> -->
+                    <span>{{ startDate }}</span>
+                  </div>
+                  <div class="adjusting-flex">
+                    <div class="form-label">End Date*</div>
+                    <!-- <p-calendar
+                        class="disabledcalendar-control"
+                        [(ngModel)]="endDate"
+                      ></p-calendar> -->
+                    <span>{{ endDate }}</span>
+                  </div>
+                </div>
+                <div style="padding: 0.5rem">
+                  <div>
+                    <div>
+                      <div style="margin-bottom: 2%">
+                        <label class="checkbox-label"
+                          >Required Document*</label
+                        >
+                        <div class="d-flex flex-wrap">
+                          <div
+                            *ngFor="let category of categories; let i = index"
+                            class="p-field-checkbox"
+                            style="padding-right: 1rem"
+                          >
+                            <p-checkbox
+                            name="group2"
+                            [value]="category.name"
+                            [inputId]="category.key"
+                            [(ngModel)]="selectedCategoriesPM"
+                            [disabled]="disableCheck"
+                            ></p-checkbox>
+                            <label [for]="category.key">{{
+                              category.name
+                            }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="other-input" style="padding:0.5rem">
+                  <span class="form-label"> Other Document :</span>
+                  &nbsp;
+                  <span>{{ otherDocument }}</span>
+                </div>
+                <p-dialog
+                  header="NDA"
+                  [(visible)]="display1"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                >
+                  <div [innerHtml]="termsCondition"></div>
+
+                  <ng-template pTemplate="footer">
+                    <p-button
+                      icon="pi pi-check-circle"
+                      (click)="display1 = false"
+                      label="Ok"
+                      styleClass="p-button-text"
+                    ></p-button>
+                  </ng-template>
+                </p-dialog>
+                
+                <div
+                  class="adjusting-flex"
+                  *ngIf="user_role.toLowerCase() != 'qa team'"
+                >
+                  <div class="form-label">Uploaded Documents:</div>
+                  <!-- <span (click)="showList()" class="view">List</span> -->
+                  <p-table
+                    [ngClass]="'ptable-upload'"
+                    [value]="uploadedList"
+                    [paginator]="true"
+                    [rows]="5"
+                  >
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Type</th>
+                        <th>File Name</th>
+                        <th>Uploaded Date</th>
+                        <th>Comments</th>
+                        <th *ngIf="adjResults.length>0">
+                          qa team Response</th>
+                      
+                      </tr>
+                    </ng-template>
+                    <ng-template
+                      pTemplate="body"
+                      let-rowData
+                      let-columns  
+                     
+                    >
+                  
+                      <tr *ngFor="let element of rowData.documentList">
+                        <!-- <span *ngIf="element.lenght>0"> -->
+                        <td>{{ rowData.documentType }}</td>
+                        <td>
+                          <a
+                            id="uploadDocbyPM"
+                            class="nav-link"
+                            (click)="downloadFile(element)"
+                            >{{ element.documentName }}</a
+                          >
+                        </td>
+                        <td>
+                          {{ element.uploadedDate }}
+                        </td>
+                        <td>
+                          {{rowData.comments}}
+                        </td>
+                        <td *ngIf="((rowData.documentType.toLowerCase()=='rfp'||
+                        rowData.documentType.toLowerCase()=='rfq'|| rowData.documentType.toLowerCase()=='rfi')&& adjResults.length>0) ,else elseBlock">
+                          <a class="nav-link" (click)="openAdjReason(rowData.adjudicationTeamApprovalList)">link</a>
+                        </td> 
+                        <ng-template #elseBlock>
+                        <td *ngIf="adjResults.length>0">
+                          <p style="padding: 0.5rem 1rem;">NA</p>
+                        </td>
+                      </ng-template>
+                    <!-- </span> -->
+                      </tr>
+                    </ng-template>
+                    
+                  
+                    
+                  </p-table>
+                </div>
+              
+                <div
+                  class="adjusting-flex"
+                  *ngIf="user_role.toLowerCase() == 'qa team'"
+                >
+                  <div class="form-label">Uploaded Documents:</div>
+                  <p-tabView>
+                    <p-tabPanel
+                      *ngFor="let item of items; let i = index"
+                      [header]="item.documentType"
+                      [selected]="i == 0"
+                    >
+                      <table id="upload" style="margin: 1rem">
+                        <thead>
+                          <tr>
+                            <th>Document</th>
+                            <th>Uploaded Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let element of item.documentList; let i = index">
+                            <td>
+                              <a
+                                class="nav-link"
+                                (click)="downloadFile(element)"
+                                >{{ element.documentName }}</a
+                              >
+                            </td>
+                            <td>{{ element.uploadedDate }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <div
+                        class="d-flex d-wrap"
+                        *ngIf="item.verified == null; else elseBlock"
+                      >
+                        <label class="radio">
+                          <input
+                            type="radio"
+                            name="decision"
+                            value="approve"
+                            (click)="check('approve')"
+                          />
+                          Approve
+                        </label>
+                        <label class="radio">
+                          <input
+                            type="radio"
+                            name="decision"
+                            value="reject"
+                            (click)="check('reject')"
+                          />
+                          Reject
+                        </label>
+                        &nbsp;&nbsp;
+                        <div class="reason" *ngIf="rejected">
+                          <label class="form-label">Reason* : </label>
+                          <input
+                            type="text"
+                            style="margin-left: 1rem"
+                            [(ngModel)]="adjReason"
+                            id="reason"
+                          />
+                        </div>
+
+                        <br />
+                        <button
+                          type="submit"
+                          class="btn btn-conclude"
+                          (click)="submitResponse(adjReason, item.documentType)"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                      <ng-template #elseBlock>
+                        <p
+                          style="margin-left: 1rem"
+                          *ngIf="item.verified.toLowerCase() == 'approved'"
+                        >
+                          <b>Document Is Accepted</b>
+                        </p>
+                        <p
+                          style="margin-left: 1rem"
+                          *ngIf="item.verified.toLowerCase() == 'rejected'"
+                        >
+                          <b>Document Is Rejected</b>
+                          <span>
+                            <p>Reason:</p>{{ item.rejectionComments }}
+                          </span>
+                        </p>
+                      </ng-template>
+                    </p-tabPanel>
+                  </p-tabView>
+                </div>
+                <div
+                  *ngIf="
+                    user_role.toLowerCase() == 'procurement manager' &&
+                    event_status.toLowerCase() == 'in progress'
+                  "
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-submit"
+                    style="float: left"
+                    (click)="cancelEvent('Cancelled')"
+                  >
+                    Cancel Event
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-submit"
+                    style="float: right; margin-right: 1rem"
+                    (click)="cancelEvent('Closed')"
+                  >
+                    Close Event
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--dialog for docs -->
+        </div>
+        <!-- </div>
+          </div>
+        </div> -->
+      </div>
+      <div
+        class="col-sm-16"
+        style="margin-top: 5rem; width: 100%; height: 100%"
+        *ngIf="user_role.toLowerCase() != 'vendor'"
+      >
+        <div class="group">
+          <input
+            type="text"
+            class="header-details"
+            style="width: 12rem"
+            value="Vendor Response"
+            readonly
+          />
+        </div>
+        <div
+          class="card event-details"
+          style="height: 100%; width: 100%; border: 1px solid black"
+        >
+          <div
+            style="padding: 0.5rem"
+            class=""
+            *ngIf="user_role.toLowerCase() != 'vendor'"
+          >
+            <div class="" style="overflow-x: auto">
+              <!-- <p class="header-card-details"><b>Vendor Response</b></p> -->
+              <table
+                style="margin: 2rem; justify-content: center;border-spacing: 0.5rem;border-collapse:separate"
+                id="customers"
+              >
+                <tr>
+                  <td></td>
+                  <th  class="docSphere" scope="col" *ngFor="let header of headElements">
+                    {{ header }}
+                  </th>
+                  <th  class="docSphere"
+                    *ngIf="
+                      event_status.toLowerCase() == 'closed' &&
+                      user_role.toLowerCase() == 'procurement manager' && !isDisabled
+                     
+                    "
+                  >
+                    PM Vote
+                  </th>
+                  <th class="docSphere"
+                    *ngIf="
+                      event_status.toLowerCase() == 'closed' &&
+                      user_role.toLowerCase() == 'qa team' && !isDisabledAdj                      
+                    "
+                  >
+                   qa team Vote
+                  </th>
+                  <th class="docSphere"
+                    *ngIf="
+                      (event_status.toLowerCase() != 'in progress' ||
+                        event_status.toLowerCase() != 'requested' ||
+                        event_status.toLowerCase() != 'cancelled' ) &&
+                      isDisabled 
+                    "
+                  >
+                    Vote By Procurement Manager
+                  </th>
+                  <th class="docSphere"
+                    *ngIf="
+                      (event_status.toLowerCase() != 'in progress' ||
+                        event_status.toLowerCase() != 'requested' ||
+                        event_status.toLowerCase() != 'cancelled') &&
+                      isDisabledAdj 
+                    "
+                  >
+                    Vote By qa team
+                  </th>
+
+                  <th class="docSphere"
+                    *ngIf="
+                      isFinalAwarded != null &&
+                      (event_status.toLowerCase() == 'concluded' ||
+                        event_status.toLowerCase() == 'not concluded')
+                    "
+                  >
+                    Awarded To
+                  </th>
+                </tr>
+
+                <tr
+                  scope="row"
+                  *ngFor="let vendor of vendorlist; let i = index"
+                >
+                  <th style=" background-color: #ffff;
+                  color:#047CCF;
+                 ">
+                    <span
+                      ><img style="width: 3rem" [src]="vendor.imageUrl"
+                    /></span>
+                    &nbsp;<span
+                      >{{ vendor.vendorName }} ( {{ vendor.totalCount }} )</span
+                    >
+                  </th>
+                  <ng-container *ngFor="let docList of vendor.documentListOfCurrentVendor;">
+                    <!-- <ng-template *ngFor="let test of vendor.documentListOfCurrentVendor">{{ test.documentType }}</ng-template> -->
+                    <td 
+                      *ngIf = "docList.documentList.length > 0; else noDocuments;"
+                    >
+                      <a
+                        class="nav-link" 
+                        (click)="openDoc(docList,vendor)"
+                      >
+                        <i
+                          class="pi pi-check-circle"
+                          style="font-size: 1.5rem;color:green"
+                        >
+                        </i>
+                        ({{ docList.documentList.length }})</a
+                      >
+                    </td>
+                    <ng-template #noDocuments>
+                      <td>
+                        <i
+                          class="pi pi-times-circle"
+                          style="
+                            font-size: 1.5rem;
+                            padding: 0.5rem 1rem;color:red
+                          "
+                        ></i>
+                      </td>
+                    </ng-template>
+                  </ng-container>
+                  <td 
+                    *ngIf="
+                      event_status.toLowerCase() == 'closed' &&
+                      user_role.toLowerCase() == 'procurement manager' && !isDisabled
+                    "
+                  >
+                    <button
+                      style="
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        cursor: pointer;
+                      "
+                      type="button"
+                      [disabled]="isDisabled"
+                      [ngClass]="{
+                        disabledd:isDisabled 
+                      }"
+                      (click)="selectVendor(vendor)"
+                    >
+                      <i
+                        class="fa fa-trophy fa-lg"
+                        [ngStyle]="{
+                          color: vendor.awarded ? 'green' : 'black'
+                        }"
+                      ></i>
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      event_status.toLowerCase() == 'closed' &&
+                      user_role.toLowerCase() == 'qa team' && !isDisabledAdj
+                    "
+                  >
+                    <button
+                      style="
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        cursor: pointer;
+                      "
+                      type="button"
+                      [disabled]="isDisabledAdj"
+                      [ngClass]="{
+                        disabledd: isDisabledAdj
+                      }"
+                      (click)="selectVendorAdj(vendor)"
+                    >
+                      <i
+                        class="fa fa-trophy fa-lg"
+                        [ngStyle]="{
+                          color: vendor.adjAwarded ? 'green' : 'black'
+                        }"
+                      ></i>
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      vendor.awarded != null && isDisabled &&
+                      (event_status.toLowerCase() != 'in progress' ||
+                        event_status.toLowerCase() != 'requested' ||  event_status.toLowerCase() != 'cancelled')
+                    "
+                  >
+                    <i
+                      class="fa fa-trophy fa-lg"
+                      [ngStyle]="{
+                        color: vendor.awarded ? 'green' : 'black'
+                      }"
+                    ></i>
+                  </td>
+                  <td
+                    *ngIf="
+                      vendor.adjAwarded != null  && isDisabledAdj &&
+                      (event_status.toLowerCase() != 'in progress' ||
+                        event_status.toLowerCase() != 'requested' || event_status.toLowerCase() != 'cancelled')
+                    "
+                  >
+                    <i
+                      class="fa fa-trophy fa-lg"
+                      [ngStyle]="{
+                        color: vendor.adjAwarded ? 'green' : 'black'
+                      }"
+                    ></i>
+                  </td>
+
+                  <td
+                    *ngIf="
+                      isFinalAwarded != null &&
+                      (event_status.toLowerCase() == 'concluded' ||
+                        event_status.toLowerCase() == 'not concluded')
+                    "
+                  >
+                    <i
+                      class="fa fa-trophy fa-lg"
+                      [ngStyle]="{
+                        color: vendor.isfinalAwarded==true ? '#FFD700': vendor.isfinalAwarded==false ? '#FF0000' : 'black'
+                      }"
+                    ></i>
+                    <br/>
+                    <span style="color:black" *ngIf="vendor.isfinalAwarded==false">Reason: {{vendor.reasonByBd}}</span>
+                  </td>
+                </tr>
+              </table>
+              <!-- table excel starts-->
+              <div>
+              <table
+              style="display:none"
+              id="excelTable"
+                >
+                <tr>
+                  <th style="background-color: #047CCF;font:bold">Event Name</th>
+                  <th style="background-color: #047CCF;">Business Owner Name</th>
+                  <th style="background-color: #047CCF;">Buyer Name</th>
+                  <th style="background-color: #047CCF;">Director Name</th>
+                  <th style="background-color: #047CCF;">qa team Name</th>
+                  <th style="background-color: #047CCF;">Required Document</th>
+                  <th style="background-color: #047CCF;">Start Date Of Event</th>
+                  <th style="background-color: #047CCF;">End Date Of Event</th>
+                  <th style="background-color: #047CCF;">Status Of Event</th>
+                </tr>
+                <tr>
+                  <td>{{display_name}}</td>
+                  <td>{{businessOwnerName}}</td>
+                  <td>{{pName}}</td>
+                  <td>{{bdName}}</td>
+                  <td>{{atName}}</td>
+                  <td>{{headElements}}</td>
+                  <td>{{startDate}}</td>
+                  <td>{{endDate}}</td>
+                  <td>{{event_status}}</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+              <tr>
+                <td></td>
+                <th  class="docSphere" scope="col" *ngFor="let header of headElements">
+                  {{ header }}
+                </th>
+                <th  class="docSphere"
+                  *ngIf="
+                    event_status.toLowerCase() == 'closed' &&
+                    user_role.toLowerCase() == 'procurement manager' && !isDisabled
+                   
+                  "
+                >
+                  PM Vote
+                </th>
+                <th class="docSphere"
+                  *ngIf="
+                    event_status.toLowerCase() == 'closed' &&
+                    user_role.toLowerCase() == 'qa team' && !isDisabledAdj                      
+                  "
+                >
+                 qa team Vote
+                </th>
+                <th class="docSphere"
+                  *ngIf="
+                    (event_status.toLowerCase() != 'in progress' ||
+                      event_status.toLowerCase() != 'requested' ||
+                      event_status.toLowerCase() != 'cancelled' ) &&
+                    isDisabled 
+                  "
+                >
+                  Vote By Procurement Manager
+                </th>
+                <th class="docSphere"
+                  *ngIf="
+                    (event_status.toLowerCase() != 'in progress' ||
+                      event_status.toLowerCase() != 'requested' ||
+                      event_status.toLowerCase() != 'cancelled') &&
+                    isDisabledAdj 
+                  "
+                >
+                  Vote By qa team
+                </th>
+
+                <th class="docSphere"
+                  *ngIf="
+                    isFinalAwarded != null &&
+                    (event_status.toLowerCase() == 'concluded' ||
+                      event_status.toLowerCase() == 'not concluded')
+                  "
+                >
+                  Awarded To
+                </th>
+              </tr>
+
+              <tr
+                scope="row"
+                *ngFor="let vendor of vendorlist; let i = index"
+              >
+                <th class="sphere">
+                  <span
+                    ><img style="width: 3rem" [src]="vendor.imageUrl"
+                  /></span>
+                  &nbsp;<span
+                    >{{ vendor.vendorName }} ( {{ vendor.totalCount }} )</span
+                  >
+                </th>
+                <ng-container *ngFor="let docList of vendor.documentListOfCurrentVendor;">
+                  <td 
+                    *ngIf="
+                    docList.documentList.length > 0;
+                      else noDocuments
+                    "
+                  >
+                    <a
+                      class="nav-link" 
+                      (click)="openDoc(docList, vendor)"
+                    >
+                      <i
+                        class="pi pi-check-circle"
+                        style="font-size: 1.5rem;color:green"
+                      >
+                      </i>
+                      ({{ docList.documentList.length }})</a
+                    >
+                  </td>
+                  <ng-template #noDocuments>
+                    <td>
+                      <i
+                        class="pi pi-times-circle"
+                        style="
+                          font-size: 1.5rem;
+                          padding: 0.5rem 1rem;color:red
+                        "
+                      ></i>
+                    </td>
+                  </ng-template>
+                </ng-container>
+                <td 
+                  *ngIf="
+                    event_status.toLowerCase() == 'closed' &&
+                    user_role.toLowerCase() == 'procurement manager' && !isDisabled
+                  "
+                >
+                  <button
+                    style="
+                      outline: none;
+                      border: none;
+                      background-color: transparent;
+                      cursor: pointer;
+                    "
+                    type="button"
+                    [disabled]="isDisabled"
+                    [ngClass]="{
+                      disabledd: isDisabled
+                    }"
+                    (click)="selectVendor(vendor)"
+                  >
+                    <i
+                      class="fa fa-trophy fa-lg"
+                      [ngStyle]="{
+                        color: vendor.awarded ? 'green' : 'black'
+                      }"
+                    ></i>
+                  </button>
+                </td>
+                <td
+                  *ngIf="
+                    event_status.toLowerCase() == 'closed' &&
+                    user_role.toLowerCase() == 'qa team' && !isDisabledAdj
+                  "
+                >
+                  <button
+                    style="
+                      outline: none;
+                      border: none;
+                      background-color: transparent;
+                      cursor: pointer;
+                    "
+                    type="button"
+                    [disabled]="isDisabledAdj"
+                    [ngClass]="{
+                      disabledd: isDisabledAdj
+                    }"
+                    (click)="selectVendorAdj(vendor)"
+                  >
+                    <i
+                      class="fa fa-trophy fa-lg"
+                      [ngStyle]="{
+                        color: vendor.adjAwarded ? 'green' : 'black'
+                      }"
+                    ></i>
+                  </button>
+                </td>
+                <td
+                  *ngIf="
+                    vendor.awarded != null && isDisabled &&
+                    (event_status.toLowerCase() != 'in progress' ||
+                      event_status.toLowerCase() != 'requested' ||  event_status.toLowerCase() != 'cancelled')
+                  "
+                >
+                  <i
+                    class="fa fa-trophy fa-lg"
+                    [ngStyle]="{
+                      color: vendor.awarded ? 'green' : 'black'
+                    }"
+                  ></i>
+                </td>
+                <td
+                  *ngIf="
+                    vendor.adjAwarded != null  && isDisabledAdj &&
+                    (event_status.toLowerCase() != 'in progress' ||
+                      event_status.toLowerCase() != 'requested' || event_status.toLowerCase() != 'cancelled')
+                  "
+                >
+                  <i
+                    class="fa fa-trophy fa-lg"
+                    [ngStyle]="{
+                      color: vendor.adjAwarded ? 'green' : 'black'
+                    }"
+                  ></i>
+                </td>
+
+                <td
+                  *ngIf="
+                    isFinalAwarded != null &&
+                    (event_status.toLowerCase() == 'concluded' ||
+                      event_status.toLowerCase() == 'not concluded')
+                  "
+                >
+                  <i
+                    class="fa fa-trophy fa-lg"
+                    [ngStyle]="{
+                      color: vendor.isfinalAwarded ? '#FFD700' : 'black'
+                    }"
+                  ></i>
+                  
+                </td>
+              </tr>
+            </table>
+            </div>
+            <!--excel table ends-->
+            </div>
+            <!--dialog for matrix click starts-->
+            <p-dialog
+              header="List of Uploaded Documents By Vendor"
+              [(visible)]="showDoc"
+              [style]="{ width: '50vw' }"
+              [baseZIndex]="10000"
+            >
+              <p-table [value]="list" [ngClass]="'ptable-upload'">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Document</th>
+                    <th>Uploaded Date</th>
+                    <th>Comments</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                  <tr>
+                    <td>
+                      <a class="nav-link" (click)="downloadFile(product)">{{
+                        product["documentName"]
+                      }}</a>
+                    </td>
+                    <td>{{ product["uploadedDate"] }}</td>
+                    <td>{{ vendorComments }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+              <ng-template pTemplate="footer">
+                <p-button
+                  icon="pi pi-check"
+                  (click)="showDoc = false"
+                  label="Ok"
+                  styleClass="p-button-text"
+                ></p-button>
+              </ng-template>
+            </p-dialog>
+            <!--dialog for matrix click end-->
+            <br />
+          </div>
+        </div>
+      </div>
+      <!--vendor role starts here-->
+      <div
+        *ngIf="user_role.toLowerCase() == 'vendor'"
+        class="col-sm-12"
+        style="padding: unset"
+      >
+          <p-dialog header="Note"  [(visible)]="displayModal"  [style]="{width: '50vw'}" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false" *ngIf="event_status.toLowerCase()=='in progress'">
+              <p class="p-m-0">1. Kindly View and accept NDA </p>
+              <p class="p-m-0">2. You can view documents uploaded by Procurement Manager under Supporting Documents section </p>
+              <p class="p-m-0">3. Upload the requested response documents in the respective sections  </p>
+            <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+            </ng-template>
+          </p-dialog>
+          <div class="group">
+            <input
+              type="text"
+              class="header-details"
+              style="width: 12rem;"
+              value="Event Details"
+              readonly
+            />
+          </div>
+        <div
+          class="card event-details-colums-adjustment-right-vendor"
+          style="height: 100%; border: 1px solid black"
+        >
+          <!-- <p class="header-card-details"><b>Event Information</b></p> -->
+          <div class="">
+            <div class="form">
+              <div class="request-form-grid" style="padding-left: 2%; padding-top:1rem">
+                <div class="">
+                  <div class="d-flex flex-wrap">
+                    <div class="adjusting-flex">
+                      <div class="form-label">Display Name*</div>
+                      <input
+                        readonly
+                        type="text"
+                        class="disable-create-field"
+                        style="width: 12rem"
+                        placeholder="Enter Event Name"
+                        [(ngModel)]="display_name"
+                      />
+                    </div>
+                    <div class="adjusting-flex">
+                      <div class="form-label"><b>1.</b>NDA*</div>
+                      <a (click)="downloadPdf()">Download </a>
+                      <div id="pdfFile" style="display: none;"> {{termsCondition}}</div>
+                      &nbsp;
+                      <span
+                        *ngIf="accepted==false && event_status.toLowerCase()=='in progress'"
+                        (click)="showDialog1()"
+                        class="view"
+                        >  | &nbsp;  View </span
+                      >
+                    </div>
+                  </div>
+                  <!--disable property starts-->
+                  <div [class.disabled]="!accepted || event_status.toLowerCase()!='in progress'">
+                    <div class="d-flex flex-wrap">
+                      <div class="adjusting-flex">
+                        <div class="form-label">Start Date*</div>
+                        <p-calendar
+                          [disabled]="true"
+                          class="calendar-control"
+                          dateFormat="dd/mm/yy"
+                          [(ngModel)]="startDate"
+                        ></p-calendar>
+                      </div>
+                      <div class="adjusting-flex">
+                        <div class="form-label">End Date*</div>
+                        <p-calendar
+                          class="calendar-control"
+                          [disabled]="true"
+                          dateFormat="dd/mm/yy"
+                          [(ngModel)]="endDate"
+                        ></p-calendar>
+                      </div>
+                    </div>
+
+                    <p-dialog
+                      header="NDA"
+                      [(visible)]="display1"
+                      [style]="{ width: '50vw' }"
+                      [baseZIndex]="10000"
+                    >
+                      <div [innerHtml]="termsCondition"></div>
+                      <ng-template pTemplate="footer">
+                        <p-button
+                          icon="pi pi-check-circle"
+                          (click)="tnC('accept')"
+                          label="Accept"
+                          styleClass="p-button-text"
+                        ></p-button>
+                        <!-- <p-button
+                          icon="pi pi-times-circle"
+                          (click)="tnC('reject')"
+                          label="Reject"
+                          styleClass="p-button-text"
+                        ></p-button> -->
+                      </ng-template>
+                    </p-dialog>
+                    <p-dialog   
+                    header="Information"
+                    [(visible)]="display2"
+                    [style]="{ width: '50vw' }"
+                    [baseZIndex]="10000">
+                    <p>You have accepted Non-Disclosure-Agreement between PICK N PAY RETAILERS (PROPRIETARY) LIMITED
+                      and {{organization}}</p>
+                      You have comepleted Step 1 ,please proceed with below:
+                      <p class="p-m-0">2. You can view documents uploaded by Procurement Manager under Supporting Documents section </p>
+                      <p class="p-m-0">3. Upload the requested response documents in the respective sections  </p>
+                    
+                    <ng-template pTemplate="footer">
+                      <p-button
+                        icon="pi pi-check-circle"
+                        label="OK"
+                        (click)="display2=false"
+                        styleClass="p-button-text"
+                      ></p-button>
+                    </ng-template>
+                    </p-dialog>
+                    <div class="adjusting-flex">
+                      <div class="form-label"><b>2.</b> Supporting Documents :</div>
+                      <span (click)="showList()" class="view">Click Here To View Documents</span>
+                    </div>
+                    <div class="adjusting-flex">
+                    <div class="form-label"><b>3.</b> Upload Documents:</div>
+                    <div *ngFor="let filetype of temparr">
+                      <div style="margin: 1rem">
+                        <mat-card class="fileCard">
+                          <mat-card-header>
+                            <mat-card-title style="color: #047CCF"
+                              >{{ filetype.documentType }} (Choose Files
+                              Below)</mat-card-title
+                            >
+    
+                            <mat-card-subtitle style="color: #047CCF">
+                              <!-- <span> file(s) selected</span> -->
+                            </mat-card-subtitle>
+                            <mat-card-subtitle>
+                              <input
+                                #fileInput1
+                                type="file"
+                                (change)="selectFile($event, filetype.documentType)"
+                                class="custom-file-upload"
+                                ngModel
+                                multiple
+                              />
+    
+                              <mat-form-field
+                                class="example-full-width"
+                                (click)="fileInput1.click()"
+                              >
+                                <input
+                                  matInput
+                                  placeholder="Choose Multiple Files"
+                                  value="{{
+                                    fileInput1.value.substr(
+                                      fileInput1.value.lastIndexOf('\\') + 1
+                                    )
+                                  }}"
+                                />
+                                <mat-icon matSuffix>folder_open</mat-icon>
+                                <!-- <i class="pi pi-upload" 
+              style="font-size:1.5rem;margin-left:12rem;color: #047CCF;">
+              </i> -->
+                              </mat-form-field>
+    
+                              &nbsp;
+                              <!-- <button
+              mat-raised-button
+              color="primary"
+              (click)="upload('BEEE')"
+            >
+              Upload
+            </button> -->
+                            </mat-card-subtitle>
+                          </mat-card-header>
+    
+                          <mat-card class="uploadCard">
+                            <div class="d-flex flex-wrap">
+                              <div class="flex-fill">
+                                <mat-card-header>
+                                  <mat-card-title
+                                    *ngIf="
+                                      !showProgressObject[filetype.documentType]
+                                    "
+                                    >No Upload in Progress!</mat-card-title
+                                  >
+                                  <mat-card-title
+                                    *ngIf="
+                                      showProgressObject[filetype.documentType]
+                                    "
+                                    >Files</mat-card-title
+                                  >
+                                  <mat-card-subtitle
+                                    *ngFor="
+                                      let uploadedFile of uploadedallFiles[
+                                        filetype.documentType
+                                      ];
+                                      index as i
+                                    "
+                                  >
+                                    <div class="d-flex">
+                                      <mat-icon>insert_drive_file</mat-icon>
+                                      <div (click)="download(uploadedFile)">
+                                        {{ uploadedFile.name }}
+                                      </div>
+                                      <div
+                                        style="cursor: pointer"
+                                        (click)="
+                                          DeleteFile(
+                                            uploadedFile,
+                                            i,
+                                            filetype.documentType
+                                          )
+                                        "
+                                      >
+                                        <mat-icon>close</mat-icon>
+                                      </div>
+                                    </div>
+                                    <!-- <mat-icon>insert_drive_file</mat-icon>
+                    {{ uploadedFile.name }} - {{ uploadedFile.progress }}% -->
+                                    <!-- <div (click)="DeleteFile(i)">cancel</div> -->
+                                    <!-- <mat-progress-bar
+                      mode="determinate"
+                      value="{{ uploadedFile.progress }}"
+                    ></mat-progress-bar> -->
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                              </div>
+                              <div class="flex-fill">
+                                <mat-card-title style="font-size: 20px">
+                                  Comment
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                  <div>
+                                    <div>
+                                      <textarea
+                                        style="height: 7rem; width: 100%"
+                                        pInputTextarea
+                                        [(ngModel)]="
+                                          allComments[filetype.documentType]
+                                        "
+                                      ></textarea>
+                                    </div>
+                                  </div>
+                                </mat-card-subtitle>
+                              </div>
+                            </div>
+                            <button
+                              (click)="uploadingCurrentDocs(filetype.documentType)"
+                              class="btn btn-submit"
+                              style="margin-bottom: 1.25em; margin-left: 1em"
+                            >Upload</button>
+                          </mat-card>
+                        </mat-card>
+                      </div>
+                    </div>
+
+                    <p-dialog
+                      header="List of Documents"
+                      [(visible)]="show"
+                      [style]="{ width: '50vw' }"
+                      [baseZIndex]="10000"
+                    >
+                      <p-table
+                        [ngClass]="'ptable-upload'"
+                        [value]="uploadedList"
+                        [paginator]="true"
+                        [rows]="3"
+                      >
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th>Type</th>
+                            <th>File name</th>
+                            <th>Uploaded Date</th>
+                            <th>Comments</th>
+                          </tr>
+                        </ng-template>
+                        <ng-template
+                          pTemplate="body"
+                          let-rowData
+                          let-columns="uploadedList"
+                        >
+                          <tr *ngFor="let element of rowData.documentList">
+                            <td>{{ rowData["documentType"] }}</td>
+
+                            <td>
+                              <a
+                                id="uploadDocbyPM"
+                                class="nav-link"
+                                (click)="downloadFile(element)"
+                                >{{ element.documentName }}</a
+                              >
+                            </td>
+                            <td>
+                              {{ element.uploadedDate }}
+                            </td>
+                            <td>
+                              {{ rowData["comments"] }}
+                            </td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                      <ng-template pTemplate="footer">
+                        <p-button
+                          icon="pi pi-check"
+                          (click)="show = false"
+                          label="Ok"
+                          styleClass="p-button-text"
+                        ></p-button>
+                      </ng-template>
+                    </p-dialog>
+                    <!--dialog for docs -->
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin: 1rem; float: right" *ngIf="event_status.toLowerCase()=='in progress'">
+                <button
+                  class="btn btn-submit"
+                  type="submit"
+                  (click)="onSubmitForm1()"
+                >
+                  Submit Response
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <!-- vendor role ends here-->
+
+    <!--upload scope dialog starts-->
+    <p-dialog
+          header="Uploaded Scope of Work"
+          [(visible)]="downloadScope"
+          [style]="{ width: '50vw' }"
+          [baseZIndex]="10000"
+        >
+        <p-table
+        [ngClass]="'ptable-upload'"
+        [value]="scopeList"
+        [paginator]="true"
+        [rows]="3"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            
+            <th>File Name</th>
+            <th>Uploaded Date</th>
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-rowData
+          let-columns="scopeList"
+        >
+          <tr>
+            <td>
+              <a
+                id="uploadDocbyPM"
+                class="nav-link"
+                (click)="download(rowData)"
+                >{{ rowData.documentName }}</a
+              >
+            </td>
+            <td>
+              {{ rowData.uploadedDate }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+          <ng-template pTemplate="footer">
+            <p-button
+              icon="pi pi-check"
+              (click)="downloadScope = false"
+              label="Ok"
+              styleClass="p-button-text"
+            ></p-button>
+          </ng-template>
+        </p-dialog>
+         <!--upload scope dialog ends-->
+  </div>
+  <app-loading-spinner
+    class="spinner-event center-aligned"
+    *ngIf="isLoading"
+  ></app-loading-spinner>
+</div>
