@@ -110,6 +110,7 @@ import { FilterPipe } from './common/pipes/filter.pipe';
 import { HighlightDirective } from './common/directives/highlight.directive';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DatePipe } from '@angular/common';
+import { TopVendorsComponent } from './home/customer-details/top-vendors/top-vendors.component';
 @NgModule({
   declarations: [
     HighlightDirective, // -> added directive
@@ -126,6 +127,7 @@ import { DatePipe } from '@angular/common';
     LogoutComponent,
     InvaliduserComponent,
     RecentEventsComponent,
+    TopVendorsComponent,
     EventSegmentationComponent,
     CreateEventComponent,
     EventDetailsComponent,

@@ -42,10 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.user_role="Business owner";
-    // this.commonService.getFiles().subscribe((data) => {
-    //   console.log('data from api', data);
-    // });
+   
     this.roleId=this.cookieService.get('roleId');
     var obj={
       roleId:this.roleId,
@@ -58,8 +55,6 @@ export class HomeComponent implements OnInit {
 
     this.isEndCustomerLoading = false;
 
-    // this.user_role = localStorage.getItem('user_role');
-    // console.log(localStorage.getItem('user_role'));
     this.user_role = this.cookieService.get('user_role');
     this.cols = [
       { field: 'code', header: 'Code' },

@@ -154,6 +154,70 @@
       >
         <div class="container-fluid">
           <div>
+            <div class="card-body" data-toggle="tooltip" data-placement="top">
+              <div class="row">
+                <div>
+                  <img
+                    src="./assets/user.svg"
+                    class="card-img-left"
+                    alt="..."
+                    style="max-width: 4.6875em"
+                    class="img-responsive"
+                  />
+                </div>
+                <div style="margin-left: 0.5rem">
+                  <strong class="card-title kpi-title">Users</strong>
+                  <div *ngIf="isEndCustomerLoading" class="card-text">
+                    <b class="kpi-data">
+                      <app-loading-spinner></app-loading-spinner>
+                    </b>
+                  </div>
+                
+                  <div
+                    *ngIf="!isEndCustomerLoading"
+                    style="
+                      color: #047CCF;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                    class="card-text"
+                  >
+                    <b class="kpi-data">{{ cardDetails?.adminTotalCount }}</b>
+                    <span class="text-value-xl">Admin</span>
+                    <div class="vl"></div>
+                    <b class="kpi-data">{{ cardDetails?.boTotalCount }}</b>
+                    <span class="text-value-xl">BO</span>
+                    <div class="vl"></div>
+                    <b class="kpi-data">{{
+                      cardDetails?.raTotalCount
+                    }}</b>
+                    <span class="text-value-xl">RA</span>
+                    <div class="vl"></div>
+                    <b class="kpi-data">{{ cardDetails?.qaTotalCount }} </b>
+                    <span class="text-value-xl">QA</span>
+                    <div class="vl"></div>
+                    <b class="kpi-data">{{ cardDetails?.pmTotalCount }} </b>
+                    <span class="text-value-xl">PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-2 flex-fill bd-highlight">
+      <div
+        class="card custom-border"
+        style="
+          box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1),
+            0 1px 6px rgba(0, 0, 0, 0.23);
+        "
+      >
+        <div class="container-fluid">
+          <div>
             <div class="card-body">
               <div class="row">
                 <div>
@@ -208,6 +272,7 @@
             </div>
           </div>
         </div>
+       
       </div>
     </div>
   </div>

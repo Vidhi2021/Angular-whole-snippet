@@ -96,6 +96,11 @@ app.post('/getCardDetails', (req, res) => {
       documentRFQCount: 1,
       documentRFICount: 1,
       documentRFPCount: 0,
+      adminTotalCount:2,
+      boTotalCount:2,
+      pmTotalCount:5,
+      qaTotalCount:3,
+      raTotalCount:2
     });
   }, 2000);
 });

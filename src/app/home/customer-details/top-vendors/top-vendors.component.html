@@ -1,0 +1,22 @@
+<!-- <div class="d-flex justify-content-between small-screen " style="margin-top: 1rem;">
+  <div class="p-2 flex-fill bd-highlight "> -->
+      <div class="card custom-border resize">
+        <div class="card-body">
+         <div class="card-title">
+           <b>Best Performing Vendors </b>
+         </div>
+         <div *ngIf="isLoading; else graphdata" class="card-text" style="
+         height: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         ">
+      <app-loading-spinner></app-loading-spinner>
+     </div>
+      <ng-template #graphdata >
+       <p-chart type="horizontalBar" [responsive]="true" [data]="basicData" [options]="basicOptions"></p-chart>
+      </ng-template>
+    </div>
+</div>
+<!-- </div>
+</div> -->
